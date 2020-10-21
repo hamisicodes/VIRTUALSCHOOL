@@ -1,0 +1,10 @@
+**/*.pyc
+**/__pycache__
+db.sqlite3
+venv/
+.env
+
+/node_modules
+/build
+static
+package-lock.json
