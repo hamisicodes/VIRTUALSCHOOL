@@ -25,8 +25,14 @@ from django.db import models
 
 class Educator(models.Model):
     educator_name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.educator_name
 class Student(models.Model):
     student_name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.student_name
 
 class Assignment(models.Model):
     title = models.CharField(max_length=500)
