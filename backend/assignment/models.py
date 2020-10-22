@@ -22,27 +22,33 @@ from django.db import models
 # Choice mode
 #   -title
 
+
+class Educator(models.Model):
+    educator_name = models.CharField(max_length=50)
+class Student(models.Model):
+    student_name = models.CharField(max_length=50)
+
 class Assignment(models.Model):
-    title = models.CharField()
-    teacher = models.ForeignKey(User, default='testing_educator', on_delete = models.CASCADE)
+    title = models.CharField(max_length=500)
+    educator = models.ForeignKey(Educator, default=1, on_delete = models.CASCADE)
 
     def __str__(self):
         return self.title
 class Graded_Assignment(models.Model):
-    student = models.ForeignKey(User, default='testing_student', on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, default=1, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.SET_NULL, blank= True, null= True)
     grade = models.FloatField()
 
     def __str__(self):
-        return self.student.username
+        return self.student
 
 class Choice(models.Model):
-    title = models.CharField()
+    title = models.CharField(max_length=500)
     
     def __str__(self):
         return self.title
 class Question(models.Model):
-    question = models.CharField()
+    question = models.CharField(max_length=500)
     choices = models.ManyToManyField(Choice)
     answer = models.ForeignKey(Choice, on_delete=models.CASCADE, related_name='answer')
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
