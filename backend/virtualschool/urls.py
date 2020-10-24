@@ -9,8 +9,8 @@ urlpatterns = [
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('api/', include('demo.urls', namespace='demo')),
-    path('api/assignments', include('assignment.assignments.urls')),
-    path('api/graded_assignments', include('assignment.graded_assignments.urls')),
+    path('api/assignments/', include('assignment.assignments.urls')),
+    path('api/graded_assignments/', include('assignment.graded_assignments.urls')),
     
 ]
 
