@@ -1,7 +1,7 @@
 import React,{ useEffect, useState} from 'react'
 import { Link} from 'react-router-dom';
 import { Card, Skeleton, Alert } from 'antd';
-// import AssignmentList from './AssignmentList';
+import Questions from './Questions';
 
 const AssignmentDetail = (props) =>{
     const [assignment, setData] = useState({})
@@ -38,9 +38,11 @@ const AssignmentDetail = (props) =>{
             <div>
                 <Skeleton active />
             </div> :(
-            <Card title={assignment.title}>
+            <Card title={assignment.title} extra={<a href="#">More</a>}>
                 <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}>
-                Inner Card content
+                    <Questions questions ={assignment.questions.map(q =>{
+                        return <Card type="inner" key = {q.id} title={`${q.order}.${q.question}`} extra={<a href="#">More</a>}></Card>
+                    })}/>
                 </Card>
             </Card>)}
         </div>
