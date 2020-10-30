@@ -1,7 +1,7 @@
 import React,{ useEffect, useState} from 'react'
 
 import 'antd/dist/antd.css';
-import { List, Avatar } from 'antd';
+import { List, Avatar,  Alert, Skeleton  } from 'antd';
 
 
 
@@ -14,7 +14,7 @@ const AssignmentList = () =>{
 
     useEffect(()=>{
         setLoading(true)
-        fetch('http://127.0.0.1:8000/api/assignments/')
+        fetch('http://127.0.0.1:800/api/assignments/')
         .then(res => res.json())
         .then(data =>{
             console.log(data)
@@ -23,11 +23,25 @@ const AssignmentList = () =>{
         })
         .catch(error =>{
             setError(error.message)
-            setLoading(false)
+            setLoading(true)
         })
     }, [])
+
         return (
             <div>
+              {error && (
+                <div style={{ padding:5 , color:"red"}}>
+                      <Alert
+                        message="Error"
+                        description=" An Error has occured while trying to get the requested material. Please Contact VirtualSchool Technician for Assistance. This is a Database related Error"
+                        type="error"
+                        showIcon
+                      />
+                 </div>
+            )}
+            {loading? <div>
+              <Skeleton active />
+            </div> :(
                  <List
             itemLayout="horizontal"
             dataSource={assignments}
@@ -40,15 +54,11 @@ const AssignmentList = () =>{
                 />
               </List.Item>
             )}
-          />
+          />)}
             </div>
         )
 };
 export default AssignmentList;
-
-
-
-
 
 
 

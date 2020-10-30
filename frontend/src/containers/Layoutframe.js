@@ -21,7 +21,7 @@ const Layoutframe = (props)=>{
     // };
   
     const onCollapse = collapsed => {
-      setCollapse({ collapsed });
+      setCollapse({ collapsed })
     };
     // const { collapsed } = this.state;
   
