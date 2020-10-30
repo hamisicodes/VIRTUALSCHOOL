@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
@@ -15,13 +16,13 @@ const Layoutframe = (props)=>{
   const { Header, Content, Footer, Sider } = Layout;
   const { SubMenu } = Menu;
   
-  let [collapsed, setCollapse ] = useState(false)
+  const [collapsed, setCollapse ] = useState(false)
     // state = {
     //   collapsed: false,
     // };
   
     const onCollapse = collapsed => {
-      setCollapse({ collapsed })
+      setCollapse(collapsed )
     };
     // const { collapsed } = this.state;
   
@@ -55,14 +56,15 @@ const Layoutframe = (props)=>{
             <Header className="site-layout-background" style={{ padding: 0 }} />
             <Content style={{ margin: '0 16px' }}>
               <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                <Link to=''><Breadcrumb.Item>User</Breadcrumb.Item></Link>
+                <Link>  <Breadcrumb.Item>Bill</Breadcrumb.Item></Link>
+                <Link to='assignmentlist'> <Breadcrumb.Item >Assignments</Breadcrumb.Item></Link>
               </Breadcrumb>
               <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                 {props.children}
               </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+            <Footer style={{ textAlign: 'center' }}>Virtual School</Footer>
           </Layout>
         </Layout>
       );

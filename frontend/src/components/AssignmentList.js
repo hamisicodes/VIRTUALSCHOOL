@@ -14,7 +14,7 @@ const AssignmentList = () =>{
 
     useEffect(()=>{
         setLoading(true)
-        fetch('http://127.0.0.1:800/api/assignments/')
+        fetch('http://127.0.0.1:8000/api/assignments/')
         .then(res => res.json())
         .then(data =>{
             console.log(data)
