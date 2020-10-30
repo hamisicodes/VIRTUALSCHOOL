@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.less';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layoutframe from './containers/Layoutframe';
-import AssignmentList from './components/AssignmentList';
+import AssignmentList from './containers/AssignmentList';
 import DemoList from './components/DemoList';
 
 
