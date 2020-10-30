@@ -5,25 +5,6 @@ import { List, Avatar } from 'antd';
 
 
 
-// function AssignmentList(){
-//     return 
-//     <di>
-//             <List
-//             itemLayout="horizontal"
-//             dataSource={assignments}
-//             renderItem={item => (
-//             <List.Item>
-//                 <List.Item.Meta
-//                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-//                 title={<a href="https://ant.design">{item.title}</a>}
-//                 description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-//                 />
-//             </List.Item>
-//           )}
-//       />
-//       </di>
-// }
-// export default AssignmentList
 
 const AssignmentList = () =>{
     const [assignments,setData] = useState()
@@ -45,8 +26,6 @@ const AssignmentList = () =>{
             setLoading(false)
         })
     }, [])
-
-
         return (
             <div>
                  <List
@@ -63,7 +42,6 @@ const AssignmentList = () =>{
             )}
           />
             </div>
-           
         )
 };
 export default AssignmentList;
@@ -74,23 +52,3 @@ export default AssignmentList;
 
 
 
-// => {
-//     const [data,setData] = useState(null)
-//     const [loading,setLoading] = useState(false)
-//     const [error,setError] = useState(null)
-
-//     useEffect(() => {
-//         setLoading(true)
-//         fetch('http://127.0.0.1:8000/api/demo/')
-//         .then(res => res.json())
-//         .then(data =>{
-//             console.log(data)
-//             setData(data)
-//             setLoading(false)
-//         })
-//         .catch(error => {
-//             setError(error.message)
-//             setLoading(false)
-//         })
-
-//     },[])

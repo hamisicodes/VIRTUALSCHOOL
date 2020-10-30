@@ -4,7 +4,6 @@ const DemoList = () => {
     const [data, setData] = useState(null)
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState(null)
-
     useEffect(() => {
         setLoading(true)
         fetch('http://127.0.0.1:8000/api/demo/')
@@ -18,10 +17,7 @@ const DemoList = () => {
             setError(error.message)
             setLoading(false)
         })
-
     },[])
-
-
     return (
         <div style={{margin:10 , padding:10}}> 
             <h1>Demo List</h1>
@@ -37,14 +33,11 @@ const DemoList = () => {
                                 <p>{demo.content}</p>
                             </div>
                         )
-                    })
-                       
+                    }) 
                     }
                 </div>
             )}
-           
         </div>
     )
 }
-
 export default DemoList
