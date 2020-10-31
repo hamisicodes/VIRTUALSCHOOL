@@ -2,7 +2,12 @@ import React,{ useEffect, useState} from 'react'
 import { Link} from 'react-router-dom';
 import { Card, Skeleton, Alert } from 'antd';
 import Questions from './Questions';
+import Choices from '../components/Choices';
 
+const cardStyle ={
+    marginTop:'30px',
+    marginBottom :'30px'
+}
 const AssignmentDetail = (props) =>{
     const [assignment, setData] = useState({})
     const [loading, setLoading]= useState(false)
@@ -43,7 +48,9 @@ const AssignmentDetail = (props) =>{
             <Card title={assignment.title} extra={<a href="#">More</a>}>
                 {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
                     <Questions questions ={assignment.questions.map(q =>{
-                        return <Card type="inner" key = {q.id} title={`${q.order}.${q.question}`} ></Card>
+                        return <Card style = {cardStyle} type="inner" key = {q.id} title={`${q.order}.${q.question}`} >
+                            <Choices/>
+                        </Card>
                     })}/>
                 {/* </Card> */}
             </Card>)}
