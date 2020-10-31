@@ -24,6 +24,8 @@ const AssignmentDetail = (props) =>{
     }, [])
     return(
         <div>
+        {Object.keys(assignment).length > 0?
+            <div>
             {error && (
                 <div style={{ padding:5 , color:"red"}}>
                     <Alert
@@ -39,13 +41,15 @@ const AssignmentDetail = (props) =>{
                 <Skeleton active />
             </div> :(
             <Card title={assignment.title} extra={<a href="#">More</a>}>
-                <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}>
+                {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
                     <Questions questions ={assignment.questions.map(q =>{
-                        return <Card type="inner" key = {q.id} title={`${q.order}.${q.question}`} extra={<a href="#">More</a>}></Card>
+                        return <Card type="inner" key = {q.id} title={`${q.order}.${q.question}`} ></Card>
                     })}/>
-                </Card>
+                {/* </Card> */}
             </Card>)}
-        </div>
+        </div>: null
+        }</div>
+     
             );
 }
 export default AssignmentDetail;
