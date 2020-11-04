@@ -1,5 +1,5 @@
 import React,{ useEffect, useState} from 'react'
-import { Link} from 'react-router-dom';
+// import { Link} from 'react-router-dom';
 import { Card, Skeleton, Alert } from 'antd';
 import Questions from './Questions';
 import Choices from '../components/Choices';
@@ -8,25 +8,42 @@ const cardStyle ={
     marginTop:'30px',
     marginBottom :'30px'
 }
+
+
 const AssignmentDetail = (props) =>{
-    const [assignment, setData] = useState({})
+    const [assignment, setAssignment] = useState({})
+    // const [, setAssignment] = useState({})
     const [loading, setLoading]= useState(false)
     const [error, setError] = useState(null)
-    const id = props.match.params.id
+    const [answer, setAnswer] = useState({})
+    const ID = props.match.params.id
+    // console.log(ID)
 
     useEffect(()=>{
+        
         setLoading(true)
-        fetch(`http://127.0.0.1:8000/api/assignments/${id}/`)
+        fetch(`http://127.0.0.1:8000/api/assignments/${ID}/`)
         .then(res => res.json())
         .then(data =>{
-            setData(data)
+            setAssignment(data)
+            // console.log(assignment)
             setLoading(false)
         })
         .catch(error =>{
             setError(error.message)
             setLoading(true)
         })
-    }, [])
+    }, []);
+    console.log(assignment)
+    const onChange = (e, qId) => {
+        console.log('radio checked', e.target.value);
+        // const {userAnswers} = answer
+        // userAnswers[qId] = e.target.value;
+        //    setValue(userAnswers)
+        // setAnswer(userAnswers);
+        setAnswer(e.target.value);
+        };
+        console.log(answer)
     return(
         <div>
         {Object.keys(assignment).length > 0?
@@ -47,9 +64,13 @@ const AssignmentDetail = (props) =>{
             </div> :(
             <Card title={assignment.title} extra={<a href="#">More</a>}>
                 {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
-                    <Questions questions ={assignment.questions.map(q =>{
+                    <Questions questions ={assignment.questions.map(q => {
                         return <Card style = {cardStyle} type="inner" key = {q.id} title={`${q.order}.${q.question}`} >
-                            <Choices/>
+                            <Choices 
+                            questionId ={q.order} 
+                            choices={q.choices} 
+                            onChange={onChange} 
+                            answer={answer}/>
                         </Card>
                     })}/>
                 {/* </Card> */}

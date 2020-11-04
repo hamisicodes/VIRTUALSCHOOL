@@ -1,44 +1,38 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Radio } from 'antd';
+// import { OmitProps } from 'antd/lib/transfer/ListBody';
 
-const Choices =()=>{
-    const {value, setValue} = useState(1)
+// const RadioGroup = Radio.Group;
+const radioStyle = {
+    display: 'block',
+    height: '30px',
+    lineHeight: '30px',
+    };
 
 
-       const onChange = e => {
-           setValue(e.target.value)
-            // this.setState({
-            // value: e.target.value,
-            // });
-        };
-    
-           
-    const radioStyle = {
-        display: 'block',
-        height: '30px',
-        lineHeight: '30px',
-        };
- 
-        // const { value } = this.state;
-        return (
-        <Radio.Group onChange ={()=>onChange} value={value}>
-            <Radio style={radioStyle} value={1}>
-            Option A
+const Choices =(props)=>{
+    const {questionId} = props.questionId;
+    console.log(questionId)
+    const answer = props;
+    console.log(answer)
+    return (
+    <Radio.Group onChange ={props.onChange} value={props.answer }>
+        {props.choices.map((c, index)=>{
+            return  <Radio style={radioStyle} key={index} value={c}>
+                {c}
             </Radio>
-            <Radio style={radioStyle} value={2}>
-            Option B
-            </Radio>
-            <Radio style={radioStyle} value={3}>
-            Option C
-            </Radio>
-            <Radio style={radioStyle} value={4}>
-            Option D
-            </Radio>
-          
-        </Radio.Group>
-        );
+        })}
+        
+    </Radio.Group>
+    );
     }
 export default Choices;
+
+
+
+// !== undefined && props.answer !== null?
+//         props.answer : null
+
 
 
 

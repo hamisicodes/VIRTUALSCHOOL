@@ -11,7 +11,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Question
-        fields = ('id', 'choices', 'question', 'order')
+        fields = ("__all__")
         
 class AssignmentSerializer(serializers.ModelSerializer):
     questions = serializers.SerializerMethodField()
@@ -22,4 +22,4 @@ class AssignmentSerializer(serializers.ModelSerializer):
         fields = ('__all__')
     def get_questions(self, obj):
         questions = QuestionSerializer(obj.questions.all(), many = True).data
-        return questions
+        return questions 

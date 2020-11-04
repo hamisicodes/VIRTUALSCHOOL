@@ -35,7 +35,7 @@ const Questions = (props) =>{
                 <div>
                     <Skeleton active />
                 </div> :(<div>
-                <Steps progressDot current={current}>
+                <Steps  current={current}>
                 {questions.map((q, index)=> (
                     <Step key={index} />
                 ))}
