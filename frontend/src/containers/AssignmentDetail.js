@@ -4,12 +4,11 @@ import { Card, Skeleton, Alert } from 'antd';
 import Questions from './Questions';
 import Choices from '../components/Choices';
 
+
 const cardStyle ={
     marginTop:'30px',
     marginBottom :'30px'
 }
-
-
 const AssignmentDetail = (props) =>{
     const [assignment, setAssignment] = useState({})
     // const [, setAssignment] = useState({})
@@ -20,7 +19,6 @@ const AssignmentDetail = (props) =>{
     // console.log(ID)
 
     useEffect(()=>{
-        
         setLoading(true)
         fetch(`http://127.0.0.1:8000/api/assignments/${ID}/`)
         .then(res => res.json())
@@ -34,16 +32,14 @@ const AssignmentDetail = (props) =>{
             setLoading(true)
         })
     }, []);
-    console.log(assignment)
-    const onChange = (e, qId) => {
-        console.log('radio checked', e.target.value);
-        // const {userAnswers} = answer
-        // userAnswers[qId] = e.target.value;
-        //    setValue(userAnswers)
-        // setAnswer(userAnswers);
-        setAnswer(e.target.value);
-        };
-        console.log(answer)
+    const onChange = (e, questionId) => {
+        answer[questionId] = e.target.value
+        console.log('i have been clicked', answer)
+        setAnswer({
+            answer
+        })
+    }
+    const studentAnswer = answer
     return(
         <div>
         {Object.keys(assignment).length > 0?
@@ -58,7 +54,7 @@ const AssignmentDetail = (props) =>{
                     />
                 </div>
             )}
-            {loading? 
+            {loading?
             <div>
                 <Skeleton active />
             </div> :(
@@ -70,14 +66,13 @@ const AssignmentDetail = (props) =>{
                             questionId ={q.order} 
                             choices={q.choices} 
                             onChange={onChange} 
-                            answer={answer}/>
+                            studentAnswer={studentAnswer}/>
                         </Card>
                     })}/>
                 {/* </Card> */}
             </Card>)}
         </div>: null
         }</div>
-     
             );
 }
 export default AssignmentDetail;
