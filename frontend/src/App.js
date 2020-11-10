@@ -5,6 +5,7 @@ import Layoutframe from './containers/Layoutframe';
 import AssignmentList from './containers/AssignmentList';
 import AssignmentDetail from './containers/AssignmentDetail';
 import DemoList from './components/DemoList';
+import GroupedAssignmentCreate from './containers/AssignmentCreate';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' exact component={ DemoList} />
         <Route path= '/assignmentlist' component={AssignmentList}/>
         <Route path= '/assignment/:id' component={AssignmentDetail}/>
+        <Route path = '/createAssignment' component={GroupedAssignmentCreate}/>
         </Switch>
       </Layoutframe>
     </div>
