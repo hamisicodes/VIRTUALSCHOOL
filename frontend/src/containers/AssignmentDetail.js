@@ -34,7 +34,7 @@ const AssignmentDetail = (props) =>{
     }, []);
     const onChange = (e, questionId) => {
         answer[questionId] = e.target.value
-        console.log('i have been clicked', answer)
+        // console.log('i have been clicked', answer)
         setAnswer({
             answer
         })

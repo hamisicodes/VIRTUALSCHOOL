@@ -13,9 +13,9 @@ const Questions = (props) =>{
     const next = () => {
             setCurrent(current+1)
           }
-    const prev = ()=>{
-            setCurrent(current - 1)
-        };
+    // const prev = ()=>{
+    //         setCurrent(current - 1)
+    //     };
     
  
     const {questions} = props
@@ -52,11 +52,12 @@ const Questions = (props) =>{
                     Done
                     </Button>
                 )}
-                {current > 0 && (
+                {/* {current > 0 && (
                     <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
                     Previous
                     </Button>
-                )}</div>
+                )} */}
+                </div>
         </div>)}
         </div>
                 )

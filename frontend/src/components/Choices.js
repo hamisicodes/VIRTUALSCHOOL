@@ -13,10 +13,10 @@ const Choices =(props)=>{
     const [value, setValue] = useState()
     const { studentAnswer } = props;
 
-    
+
     const handleChange = (e, qId)=>{
         props.onChange(e, questionId);
-        setValue(props.studentAnswer[questionId]);
+        setValue(studentAnswer[questionId]);
     }
     return (
     <Radio.Group onChange ={handleChange} value={value }>
