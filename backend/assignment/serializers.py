@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Assignment, Question
+from .models import Assignment, Question, Graded_Assignment
 
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
@@ -23,3 +23,9 @@ class AssignmentSerializer(serializers.ModelSerializer):
     def get_questions(self, obj):
         questions = QuestionSerializer(obj.questions.all(), many = True).data
         return questions 
+    
+class GradedAssignmentSerializer(serializers.ModelSerializer):
+    student = StringSerializer(many = False)
+    class Meta:
+        model = Graded_Assignment
+        fields = ("__all__")
