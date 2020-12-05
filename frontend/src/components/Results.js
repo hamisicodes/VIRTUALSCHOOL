@@ -5,7 +5,7 @@ const Result = props =>{
     return(
 
             <List.Item>
-              <Card title={item.title}>
+              <Card title={props.title}>
                 <Progress
                     strokeColor={{
                     from: '#fa4659',
