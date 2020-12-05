@@ -20,3 +20,11 @@ class AssignmentViewSet(viewsets.ModelViewSet):
 class GradedAssignmentListView(ListAPIView):
     serializer_class =  GradedAssignmentSerializer
     queryset = Graded_Assignment.objects.all()
+    
+    # quering for specific user, to define defferent students.
+    def get_queryset(self):
+        queryset = Graded_Assignment.objects.all()
+        username = self.request.query_params.get('username', None)
+        if username is not None:
+            queryset = queryset.filter(student_username=username)
+        return queryset

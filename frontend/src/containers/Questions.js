@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import { Steps, Button, message, Skeleton, Alert } from 'antd';
+import { Steps, Button, Skeleton, Alert } from 'antd';
 
 
 const { Step } = Steps;
@@ -48,8 +48,8 @@ const Questions = (props) =>{
                     </Button>
                 )}
                 {current === questions.length - 1 && (
-                    <Button type="primary" onClick={() => message.success('Processing complete!')}>
-                    Done
+                    <Button type="primary" onClick={() => props.submit()}>
+                    Submit
                     </Button>
                 )}
                 {/* {current > 0 && (

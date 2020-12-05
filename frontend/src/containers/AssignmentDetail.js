@@ -1,6 +1,6 @@
 import React,{ useEffect, useState} from 'react'
 // import { Link} from 'react-router-dom';
-import { Card, Skeleton, Alert } from 'antd';
+import { Card, Skeleton, Alert, message } from 'antd';
 import Questions from './Questions';
 import Choices from '../components/Choices';
 
@@ -39,6 +39,9 @@ const AssignmentDetail = (props) =>{
             answer
         })
     }
+    function handleSubmit(){
+        message.success('Submiting Assignment Completed!')
+    }
     const studentAnswer = answer
     return(
         <div>
@@ -60,7 +63,9 @@ const AssignmentDetail = (props) =>{
             </div> :(
             <Card title={assignment.title} extra={<a href="#">More</a>}>
                 {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
-                    <Questions questions ={assignment.questions.map(q => {
+                    <Questions 
+                    submit={()=>handleSubmit}
+                    questions ={assignment.questions.map(q => {
                         return <Card style = {cardStyle} type="inner" key = {q.id} title={`${q.order}.${q.question}`} >
                             <Choices 
                             questionId ={q.order} 

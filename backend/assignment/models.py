@@ -47,7 +47,7 @@ class Graded_Assignment(models.Model):
     grade = models.FloatField()
 
     def __str__(self):
-        return self.student
+        return str(self.student)
 
 class Choice(models.Model):
     title = models.CharField(max_length=500)
