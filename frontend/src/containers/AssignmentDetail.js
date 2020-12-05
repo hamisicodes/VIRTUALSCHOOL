@@ -34,14 +34,44 @@ const AssignmentDetail = (props) =>{
     }, []);
     const onChange = (e, questionId) => {
         answer[questionId] = e.target.value
-        // console.log('i have been clicked', answer)
-        setAnswer({
+     
+        console.log('i have been clicked', e.target)
+        setAnswer(
             answer
+        )
+    }
+    // logic to handle posting of the assignment
+    function createGradedAssignment(opts){
+        fetch('http://127.0.0.1:8000/api/graded_assignments/create/', {
+            method:'post',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(opts)
+        }).then(function(res){
+            return res.json();
+        }).then((data)=>{
+            console.log(data)
         })
+        .catch(error =>{
+            setError(error.message)
+        });
+        
     }
-    function handleSubmit(){
-        message.success('Submiting Assignment Completed!')
+    const handleSubmit=()=>{
+        const gradadeAssignmentRawData = {
+            // props.username
+            username: "student1",
+            asntID:ID,
+            answers:answer
+        }
+        message.success('Submiting Assignment Completed!');
+        createGradedAssignment(gradadeAssignmentRawData)
+        // console.log(gradadeAssignmentRawData)
+        
     }
+    console.log(answer)
     const studentAnswer = answer
     return(
         <div>
@@ -64,7 +94,7 @@ const AssignmentDetail = (props) =>{
             <Card title={assignment.title} extra={<a href="#">More</a>}>
                 {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
                     <Questions 
-                    submit={()=>handleSubmit}
+                    submit={handleSubmit}
                     questions ={assignment.questions.map(q => {
                         return <Card style = {cardStyle} type="inner" key = {q.id} title={`${q.order}.${q.question}`} >
                             <Choices 

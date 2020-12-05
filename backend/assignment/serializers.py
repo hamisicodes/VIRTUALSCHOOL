@@ -29,3 +29,8 @@ class GradedAssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Graded_Assignment
         fields = ("__all__")
+        
+    # overriding the create method
+    def create(self, request):
+        data =request.data
+        print(data)
