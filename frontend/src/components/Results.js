@@ -13,7 +13,7 @@ const Result = props =>{
   }
   else color ="#5cb85c"
 
-  console.log(assignmentName)
+  // console.log(assignmentName)
     return(
 
             <List.Item>

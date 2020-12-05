@@ -21,7 +21,7 @@ const GradedAssignment = ()=>{
         })
 
     }, [])
-    console.log(data)
+    // console.log(data)
       return(
           <>
           {/* <h1>{props.username} Related Assignment Scores</h1> */}

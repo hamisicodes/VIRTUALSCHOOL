@@ -33,11 +33,9 @@ class GradedAssignmentCreateView(CreateAPIView):
     
     # overing post method
     def post(self, request):
-        print("data is to appear below")
-        print(request.data)
         serializer = GradedAssignmentSerializer(data = request.data)
-        if serializer.is_valid():
-            gradedAssignmentData = serializer.create(request)
-            if gradedAssignmentData:
-                return Response(status = HTTP_201_CREATED)
+        serializer.is_valid()
+        gradedAssignmentData = serializer.create(request)
+        if gradedAssignmentData:
+            return Response(status = HTTP_201_CREATED)
         return Response(status=HTTP_400_BAD_REQUEST)

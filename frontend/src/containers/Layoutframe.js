@@ -8,6 +8,7 @@ import {
   FileOutlined,
   TeamOutlined,
   UserOutlined,
+  PercentageOutlined,
 } from '@ant-design/icons';
 import { OmitProps } from 'antd/lib/transfer/ListBody';
 
@@ -51,7 +52,7 @@ const Layoutframe = (props)=>{
               <Menu.Item key="9" icon={<FileOutlined />}>
                 Files
               </Menu.Item>
-              <Link to="gradedassignment"><Menu.Item key="3">Scores</Menu.Item></Link>
+              <Menu.Item key="3" icon={<PercentageOutlined />}><Link to="gradedassignment">Scores</Link></Menu.Item>
             </Menu>
           </Sider>
           <Layout className="site-layout">
@@ -61,9 +62,8 @@ const Layoutframe = (props)=>{
                 <Link to=''><Breadcrumb.Item>User</Breadcrumb.Item></Link>
                 <Link>  <Breadcrumb.Item>Bill</Breadcrumb.Item></Link>
                   {/* {props.userauthentication? props.is_educator(the createassignment link)} */}
-                  <Link to='createAssignment'><Breadcrumb.Item>Creat Assignment</Breadcrumb.Item></Link>
-                <Link to='assignmentlist'> 
-                <Breadcrumb.Item >Assignments</Breadcrumb.Item></Link>
+                  <Link to='createAssignment'><Breadcrumb.Item>Creat Assignent</Breadcrumb.Item></Link>
+                  <Link to='assignmentlist'><Breadcrumb.Item >Assignments</Breadcrumb.Item></Link>
               </Breadcrumb>
               <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                 {props.children}

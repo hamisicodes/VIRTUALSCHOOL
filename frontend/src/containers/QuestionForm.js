@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input} from 'antd';
 
 
 const GroupedQuestionForm = (props) => {
@@ -9,27 +9,26 @@ const GroupedQuestionForm = (props) => {
   console.log(props.id)
   
   return (
-
-              <Form.Item
-                label={'Choice'}
-                required={false}
-                key={props.id}
-                style = {{padding:'0px'}}
-              > 
-                  <Form.Item
-                    validateTrigger={['onChange', 'onBlur']}
-                    rules={[
-                      {
-                        required: true,
-                        whitespace: true,
-                        message: "Please input a Choice or delete this field.",
-                      },
-                    ]}
-                    noStyle
-                  >
-                      <Input placeholder="Choice" style={{ width: '25%' }} />
-                  </Form.Item>
-              </Form.Item>
+	<Form.Item
+	label={'Choice'}
+	required={false}
+	key={props.id}
+	style = {{padding:'0px'}}
+	> 
+		<Form.Item
+			validateTrigger={['onChange', 'onBlur']}
+			rules={[
+			{
+			required: true,
+			whitespace: true,
+			message: "Please input a Choice or delete this field.",
+			},
+			]}
+			noStyle
+			>
+			<Input placeholder="Choice" style={{ width: '25%' }} />
+		</Form.Item>
+	</Form.Item>
   );
 };
 

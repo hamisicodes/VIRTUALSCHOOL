@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import { Steps, Button, Skeleton, Alert } from 'antd';
 
 
@@ -20,7 +20,7 @@ const Questions = (props) =>{
  
     const {questions} = props
     return(    
-        <div >
+        <>
             {error && (
                     <div style={{ padding:5 , color:"red"}}>
                         <Alert
@@ -59,7 +59,7 @@ const Questions = (props) =>{
                 )} */}
                 </div>
         </div>)}
-        </div>
+        </>
                 )
 }
 export default Questions;

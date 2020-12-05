@@ -1,5 +1,5 @@
 import React,{ useEffect, useState} from 'react'
-// import { Link} from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import { Card, Skeleton, Alert, message } from 'antd';
 import Questions from './Questions';
 import Choices from '../components/Choices';
@@ -15,6 +15,7 @@ const AssignmentDetail = (props) =>{
     const [loading, setLoading]= useState(false)
     const [error, setError] = useState(null)
     const [answer, setAnswer] = useState({})
+    const [redirect, setRedirect] = useState(null)
     const ID = props.match.params.id
     // console.log(ID)
 
@@ -35,12 +36,13 @@ const AssignmentDetail = (props) =>{
     const onChange = (e, questionId) => {
         answer[questionId] = e.target.value
      
-        console.log('i have been clicked', e.target)
+        // console.log('i have been clicked', e.target)
         setAnswer(
             answer
         )
     }
     // logic to handle posting of the assignment
+    // useEffect((opts)=>{})
     function createGradedAssignment(opts){
         fetch('http://127.0.0.1:8000/api/graded_assignments/create/', {
             method:'post',
@@ -51,11 +53,9 @@ const AssignmentDetail = (props) =>{
             body: JSON.stringify(opts)
         }).then(function(res){
             return res.json();
-        }).then((data)=>{
-            console.log(data)
         })
         .catch(error =>{
-            setError(error.message)
+            setError(error)
         });
         
     }
@@ -68,13 +68,23 @@ const AssignmentDetail = (props) =>{
         }
         message.success('Submiting Assignment Completed!');
         createGradedAssignment(gradadeAssignmentRawData)
+        setRedirect("assignmentlist")
+
         // console.log(gradadeAssignmentRawData)
-        
+        // redirectToTarget = () => {
+        //     props.history.push(`/target`)
+        //   }
     }
-    console.log(answer)
+    useEffect(()=>{
+        
+    })
+          
+    // console.log(answer)
     const studentAnswer = answer
+    if (redirect)
+        return <Redirect to={ redirect}/>
     return(
-        <div>
+        <>
         {Object.keys(assignment).length > 0?
             <div>
             {error && (
@@ -107,7 +117,7 @@ const AssignmentDetail = (props) =>{
                 {/* </Card> */}
             </Card>)}
         </div>: null
-        }</div>
+        }</>
             );
 }
 export default AssignmentDetail;

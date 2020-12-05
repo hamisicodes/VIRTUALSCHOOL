@@ -26,7 +26,7 @@ const AssignmentList = () =>{
         })
     }, [])
         return (
-            <div>
+            <>
               {error && (
                 <div style={{ padding:5 , color:"red"}}>
                       <Alert
@@ -55,7 +55,7 @@ const AssignmentList = () =>{
               </List.Item>
             )}
           /></div>)}
-            </div>
+            </>
         )
 };
 export default AssignmentList;
