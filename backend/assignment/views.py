@@ -19,4 +19,4 @@ class AssignmentViewSet(viewsets.ModelViewSet):
 
 class GradedAssignmentListView(ListAPIView):
     serializer_class =  GradedAssignmentSerializer
-    queryset = Assignment.objects.all()
+    queryset = Graded_Assignment.objects.all()

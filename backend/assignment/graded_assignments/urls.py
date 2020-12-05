@@ -1,5 +1,5 @@
 from django.urls import path
-from ..views import GradedAssignmentListView
+from assignment.views import GradedAssignmentListView
 
 
 urlpatterns = [

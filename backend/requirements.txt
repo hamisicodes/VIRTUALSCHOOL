@@ -11,7 +11,7 @@ django-cors-headers==3.5.0
 djangorestframework==3.12.1
 idna==2.10
 oauthlib==3.1.0
-pycparser==2.20
+pycparser==2.20n/
 PyJWT==1.7.1
 python3-openid==3.2.0
 pytz==2020.1
