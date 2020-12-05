@@ -1,7 +1,6 @@
 import React from 'react';
-import { List, Card } from 'antd';
-import { OmitProps } from 'antd/lib/transfer/ListBody';
-
+import { List } from 'antd';
+import Result from "../components/Results";
 const GradedAssignment = ()=>{
     const data = [
         {
@@ -38,11 +37,8 @@ const GradedAssignment = ()=>{
             xxl: 3,
           }}
           dataSource={data}
-          renderItem={item => (
-            <List.Item>
-              <Card title={item.title}>Card content</Card>
-            </List.Item>
-          )}
+          renderItem={assignment => <Result key ={assignment.id} grade ={assignment.grade}></Result>
+        }
         /> 
 </>);
 }
