@@ -39,7 +39,8 @@ const Layoutframe = (props)=>{
                 Option 2
               </Menu.Item>
               <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                <Menu.Item key="3">Tom</Menu.Item>
+                
+              
                 <Menu.Item key="4">Bill</Menu.Item>
                 <Menu.Item key="5">Alex</Menu.Item>
               </SubMenu>
@@ -50,6 +51,7 @@ const Layoutframe = (props)=>{
               <Menu.Item key="9" icon={<FileOutlined />}>
                 Files
               </Menu.Item>
+              <Link to="gradedassignment"><Menu.Item key="3">Scores</Menu.Item></Link>
             </Menu>
           </Sider>
           <Layout className="site-layout">

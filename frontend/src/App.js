@@ -6,6 +6,8 @@ import AssignmentList from './containers/AssignmentList';
 import AssignmentDetail from './containers/AssignmentDetail';
 import DemoList from './components/DemoList';
 import GroupedAssignmentCreate from './containers/AssignmentCreate';
+import GradedAssignment from'./containers/GradedAssignment';
+
 
 
 function App() {
@@ -18,6 +20,9 @@ function App() {
         <Route path= '/assignmentlist' component={AssignmentList}/>
         <Route path= '/assignment/:id' component={AssignmentDetail}/>
         <Route path = '/createAssignment' component={GroupedAssignmentCreate}/>
+        
+        {/* to introduce id for the student in particular, as for educators they ill have the full rights to view each student perfomances. */}
+        <Route path = '/gradedassignment' component={GradedAssignment}/>
         </Switch>
       </Layoutframe>
     </div>
