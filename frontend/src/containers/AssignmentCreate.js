@@ -6,7 +6,7 @@ const GroupedAssignmentCreate = (props) => {
 	const { TextArea } = Input;
 	// const [loading, setLoading]= useState(false)
     const [error, setError] = useState(null)
-	// Creating an Assignment object that has Assignment and question(s)
+	// Creating an Assignment object that has Assignment and question(s) and calling createassignment method
     const onFinish = values => {
 		// console.log('Received values of form:', values);
 		const questions = [];
@@ -19,7 +19,7 @@ const GroupedAssignmentCreate = (props) => {
 			});
 		}
 		const AssignmentData = {
-			educator :"educator_testing hardcorded",
+			educator :"educator_testing_hardcoded",
 			title: values.assignmentTitle,
 			questions
 		}

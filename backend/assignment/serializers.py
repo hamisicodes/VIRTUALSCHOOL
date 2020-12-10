@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Assignment, Question, Graded_Assignment
+from .models import Assignment, Question, Graded_Assignment, Choice
 
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
@@ -23,6 +23,41 @@ class AssignmentSerializer(serializers.ModelSerializer):
     def get_questions(self, obj):
         questions = QuestionSerializer(obj.questions.all(), many = True).data
         return questions 
+    # overiding created method in views as to arrange data into its matching model and fields
+    def create(self, request):
+        collected_assignment_data = request.data
+        print(collected_assignment_data)
+        assignment = Assignment()
+        # educator = User.objects.get(username=data['educator'])
+        # assignment.educator = collected_assignment_data['educator']
+        assignment.title = collected_assignment_data['title']
+        assignment.save()
+        print(assignment.id)
+        
+        
+        # looping though the questions array
+        order =1
+        for q in collected_assignment_data['questions']:
+            new_question = Question()
+            new_question.question = q['title']
+            new_question.assignment_id =assignment.id
+            new_question.order =order
+            new_question.save()
+            
+            # gettng the choice of the specific question
+            for c in q['choices']:
+               new_choice = Choice()
+               new_choice.title =c
+               new_choice.save()
+               new_question.choices.add(new_choice)
+               
+            new_question.answer =  Choice.objects.get(title = q['answer'])
+            new_question.assignment = assignment
+            new_question.save()
+            order +=1
+        return assignment
+        
+        
     
 class GradedAssignmentSerializer(serializers.ModelSerializer):
     student = StringSerializer(many = False)
