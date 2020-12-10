@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useState,useEffect } from 'react';
 import 'antd/dist/antd.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import axios from 'axios';
@@ -50,6 +50,10 @@ const Login = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  useEffect(() => {
+    localStorage.removeItem("key"); 
+  })
 
   const [email , setEmail] = useState('')
   const [password , setPassword] = useState('');

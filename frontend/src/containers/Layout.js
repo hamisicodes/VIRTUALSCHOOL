@@ -80,7 +80,7 @@ const AppLayout = (props) => {
             
             
             <Menu.Item  key="4">
-            <Link to={!user && '/login'}>{user?`logout`:`login`} </Link> 
+            <Link to='/login'>Logout</Link> 
             </Menu.Item>
 
             <Menu.Item key="3">Account</Menu.Item>
@@ -112,6 +112,7 @@ const AppLayout = (props) => {
       </Layout>
     );
   }
+  
 
 
 export default AppLayout;
