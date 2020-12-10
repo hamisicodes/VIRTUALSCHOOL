@@ -18,16 +18,10 @@ const Layoutframe = (props)=>{
   const { SubMenu } = Menu;
   
   const [collapsed, setCollapse ] = useState(false)
-    // state = {
-    //   collapsed: false,
-    // };
-  
     const onCollapse = collapsed => {
       setCollapse(collapsed )
     };
-    // const { collapsed } = this.state;
   
-    // collapsed = 
       return (
         <Layout style={{ minHeight: '100vh' }}>
           <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>

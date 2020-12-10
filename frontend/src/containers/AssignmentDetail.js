@@ -11,7 +11,6 @@ const cardStyle ={
 }
 const AssignmentDetail = (props) =>{
     const [assignment, setAssignment] = useState({})
-    // const [, setAssignment] = useState({})
     const [loading, setLoading]= useState(false)
     const [error, setError] = useState(null)
     const [answer, setAnswer] = useState({})
@@ -19,13 +18,13 @@ const AssignmentDetail = (props) =>{
     const ID = props.match.params.id
     // console.log(ID)
 
+    // Taking advantage of useEffect to get assignment questions.
     useEffect(()=>{
         setLoading(true)
         fetch(`http://127.0.0.1:8000/api/assignments/${ID}/`)
         .then(res => res.json())
         .then(data =>{
             setAssignment(data)
-            // console.log(assignment)
             setLoading(false)
         })
         .catch(error =>{
@@ -75,9 +74,7 @@ const AssignmentDetail = (props) =>{
         //     props.history.push(`/target`)
         //   }
     }
-    useEffect(()=>{
-        
-    })
+
           
     // console.log(answer)
     const studentAnswer = answer
@@ -85,39 +82,40 @@ const AssignmentDetail = (props) =>{
         return <Redirect to={ redirect}/>
     return(
         <>
-        {Object.keys(assignment).length > 0?
-            <div>
-            {error && (
-                <div style={{ padding:5 , color:"red"}}>
-                    <Alert
-                        message="Error"
-                        description=" An Error has occured while trying to get the requested material. Please Contact VirtualSchool Technician for Assistance. This is a Database related Error"
-                        type="error"
-                        showIcon
-                    />
-                </div>
-            )}
-            {loading?
-            <div>
-                <Skeleton active />
-            </div> :(
-            <Card title={assignment.title} extra={<a href="#">More</a>}>
-                {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
-                    <Questions 
-                    submit={handleSubmit}
-                    questions ={assignment.questions.map(q => {
-                        return <Card style = {cardStyle} type="inner" key = {q.id} title={`${q.order}.${q.question}`} >
-                            <Choices 
-                            questionId ={q.order} 
-                            choices={q.choices} 
-                            onChange={onChange} 
-                            studentAnswer={studentAnswer}/>
-                        </Card>
-                    })}/>
-                {/* </Card> */}
-            </Card>)}
-        </div>: null
-        }</>
+            {Object.keys(assignment).length > 0?
+                <div>
+                {error && (
+                    <div style={{ padding:5 , color:"red"}}>
+                        <Alert
+                            message="Error"
+                            description=" An Error has occured while trying to get the requested material. Please Contact VirtualSchool Technician for Assistance. This is a Database related Error"
+                            type="error"
+                            showIcon
+                        />
+                    </div>
+                )}
+                {loading?
+                <div>
+                    <Skeleton active />
+                </div> :(
+                <Card title={assignment.title} extra={<a href="#">More</a>}>
+                    {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
+                        <Questions 
+                            submit={handleSubmit}
+                            questions ={assignment.questions.map(q => {
+                                return <Card style = {cardStyle} type="inner" key = {q.id} title={`${q.order}.${q.question}`} >
+                                    <Choices 
+                                    questionId ={q.order} 
+                                    choices={q.choices} 
+                                    onChange={onChange} 
+                                    studentAnswer={studentAnswer}/>
+                                </Card>
+                        })}/>
+                    {/* </Card> */}
+                </Card>)}
+            </div>: null
+            }
+        </>
             );
 }
 export default AssignmentDetail;

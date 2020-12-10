@@ -5,7 +5,6 @@ import { List, Avatar,  Alert, Skeleton  } from 'antd';
 
 
 
-
 const AssignmentList = () =>{
     const [assignments,setData] = useState([])
     const [loading, setLoading]= useState(false)
@@ -27,34 +26,36 @@ const AssignmentList = () =>{
     }, [])
         return (
             <>
-              {error && (
-                <div style={{ padding:5 , color:"red"}}>
-                      <Alert
-                        message="Error"
-                        description=" An Error has occured while trying to get the requested material. Please Contact VirtualSchool Technician for Assistance. This is a Database related Error"
-                        type="error"
-                        showIcon
-                      />
-                 </div>
-            )}
-            {loading? <div>
-              <Skeleton active />
-            </div> :(
-               <div>
-                    <h3 style={{margin: '16px 0'}}>Assignment List</h3>
-                 <List
-            itemLayout="horizontal"
-            dataSource={assignments}
-            renderItem={item => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                  title={<Link to={`/assignment/${item.id}`}>{item.title}</Link>}
-                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                />
-              </List.Item>
-            )}
-          /></div>)}
+              	{error && (
+					<div style={{ padding:5 , color:"red"}}>
+						<Alert
+							message="Error"
+							description=" An Error has occured while trying to get the requested material. Please Contact VirtualSchool Technician for Assistance. This is a Database related Error"
+							type="error"
+							showIcon
+						/>
+					</div>
+            	)}
+            {loading? 
+				<div>
+				<Skeleton active />
+				</div> :(
+				<div>
+					<h3 style={{margin: '16px 0'}}>Assignment List</h3>
+					<List
+						itemLayout="horizontal"
+						dataSource={assignments}
+						renderItem={item => (
+						<List.Item>
+							<List.Item.Meta
+							avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+							title={<Link to={`/assignment/${item.id}`}>{item.title}</Link>}
+							description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+							/>
+						</List.Item>
+						)}
+          			/>
+		  		</div>)}
             </>
         )
 };
