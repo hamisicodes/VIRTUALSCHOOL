@@ -24,17 +24,20 @@ const GroupedAssignmentCreate = (props) => {
 			questions
 		}
 		message.success('Submiting Assignment Completed!');
-        createAssignment(AssignmentData)
+		createAssignment(AssignmentData)
+		this.props.form.resetFields(); 
+
 		// console.log("i am assignment detail",AssignmentData)
 	};
 	// Creating the assignment object in backend
-	function createAssignment(opts){
+	function createAssignment(opts, props){
         fetch('http://127.0.0.1:8000/api/assignments/', {
             method:'post',
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'
-              },
+			  },
+			
             body: JSON.stringify(opts)
         }).then(function(res){
             return res.json();
@@ -45,9 +48,11 @@ const GroupedAssignmentCreate = (props) => {
         
     }
     return (
+		
 		<Form name="dynamic_form_nest_item" scrollToFirstError={true}	style = {{
 			textAlign: "center"
 		}}onFinish={onFinish}  autoComplete="off">
+			<h1 style={{textAlign:"center"}}> Create Assignment</h1>
 			<Form.Item >
 				<Row type="flex" justify="center" align="middle" style={{minHeight: '10vh'}}>
 					<Form.Item name="assignmentTitle" fieldKey="ass"
@@ -152,108 +157,13 @@ const GroupedAssignmentCreate = (props) => {
 			
 			
 			<Form.Item>
-				<Button type="primary" htmlType="submit">
+				<Button type="primary" htmlType="submit" 
+				
+				>
 					Submit
 				</Button>
 			</Form.Item>
 	  </Form>
-		
-		// <Form name="dynamic_form_item"  onFinish=  {onFinish}>
-
-		// 		{/* form item to handle assignment tittle */}
-
-		// 	<h1 style = {{textAlign:"center"}}>Create Assignment</h1>
-		// 	<Form.Item         
-		// 		style={{textAlign:"center"}}
-		// 		label ={"Title: "}
-		// 		validateTrigger={['onChange', 'onBlur']}
-		// 		rules={[
-		// 		{
-		// 			required :true,
-		// 			message: "Please TextArea a title this Assignment(Hint: Supposed to be related with the Course/Subject/Module/Topic)!"
-		// 		},
-		// 		]}>
-		// 		<Input placeholder="Add Assignment title" required style={{ width: '40%', textAlign:"center" }} />
-		// 	</Form.Item>
-				
-		// 	<Form.List
-		// 		name="names"
-		// 		rules={[
-		// 			// {
-		// 			// validator: async (_, names) => {
-		// 			// 	if (!names || names.length < 2) {
-		// 			// 	return Promise.reject(new Error('At least 2 Questions'));
-		// 			// 	}
-		// 			// },
-		// 			// },
-		// 		]}
-		// 	>
-		// 	{(fields, { add, remove }, { errors }) => (
-		// 		<>
-				
-		// 		{fields.map((field, index) => (
-		// 			<Form.Item
-		// 			style={{textAlign:"center"}}
-		// 			label={index === 0 ? 'Questions' : ''}
-		// 			required={false}
-		// 			key="1"
-		// 			>
-		// 				<Form.Item
-		// 					{...field}
-		// 					name={[field.name, 'first']}
-		// 					fieldKey={[field.fieldKey, 'first']}
-		// 					validateTrigger={['onChange', 'onBlur']}
-		// 					rules={[
-		// 					{
-								
-		// 						required: true,
-		// 						message: "Please input Question's Statement or delete this field.",
-		// 					},
-		// 					]}
-		// 					noStyle
-		// 				>
-		// 					<Input placeholder="Question Statement" style={{ width: '60%' }} />
-		// 				</Form.Item>
-		// 				<QuestionForm {...props}
-		// 				{...field}
-		// 				name={[field.name, 'second']}
-		// 				fieldKey={[field.fieldKey, 'second']} 
-		// 				></QuestionForm>
-
-		// 				{formCount > 1 ? (
-		// 					<MinusCircleOutlined
-		// 					className="dynamic-delete-button"
-		// 					onClick={() => remove(
-		// 						field.name,
-		// 						setFormCount(formCount - 1)
-		// 						)}
-		// 					/>
-		// 				) : null}
-		// 			</Form.Item>
-		// 		))}
-				
-		// 		<Form.Item>
-		// 			<Button
-		// 				type="secondary"
-		// 				onClick={() => add(
-		// 					setFormCount(formCount + 1)
-		// 				)}
-		// 				style={{ width: '60%' }}
-		// 				icon={<PlusSquareFilled />}
-		// 				>
-		// 				Add Question
-		// 			</Button>
-		// 			<Form.ErrorList errors={errors} />
-		// 		</Form.Item>
-		// 	</>
-		// 	)}
-		// 	</Form.List>
-		// 	<Form.Item>
-		// 		<Button type="secondary" htmlType="submit" >
-		// 			Submit
-		// 		</Button>
-		// 	</Form.Item>
-		// </Form>
     );
   };
 export default GroupedAssignmentCreate;

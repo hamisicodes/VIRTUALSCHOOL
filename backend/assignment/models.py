@@ -45,6 +45,9 @@ class Graded_Assignment(models.Model):
     student = models.ForeignKey(Student, default=1, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.SET_NULL, blank= True, null= True)
     grade = models.FloatField()
+    
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return str(self.student)
@@ -58,7 +61,7 @@ class Choice(models.Model):
 class Question(models.Model):
     question = models.CharField(max_length=500)
     choices = models.ManyToManyField(Choice)
-    answer = models.ForeignKey(Choice, on_delete=models.CASCADE, related_name='answer')
+    answer = models.ForeignKey(Choice, on_delete=models.CASCADE, related_name='answer', null=True, blank=True)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, related_name = 'questions')
     order = models.SmallIntegerField()
 

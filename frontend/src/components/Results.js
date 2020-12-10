@@ -3,7 +3,6 @@ import { Progress, List, Card } from 'antd';
 
 const Result = props =>{
   let grade = props.grade;
-  let assignmentName = props.assignment;
   let color = ""
   if (grade < 35){
     color ="#f33535"
@@ -12,12 +11,9 @@ const Result = props =>{
     color ="#0275d8"
   }
   else color ="#5cb85c"
-
-  // console.log(assignmentName)
     return(
-
             <List.Item>
-              <Card title="title">
+              <Card title={props.title}>
                      <Progress
                      strokeColor={{
                      from: color,

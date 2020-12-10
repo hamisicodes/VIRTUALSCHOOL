@@ -50,7 +50,7 @@ const GradedAssignment = ()=>{
                                 xxl: 3,
                             }}
                             dataSource={data}
-                            renderItem={assignment => <Result key ={assignment.id} grade ={assignment.grade}></Result>
+                            renderItem={assignment => <Result key ={assignment.id} grade ={assignment.grade} title= {assignment.assignment}></Result>
                             }
                             /> )}
 </>);

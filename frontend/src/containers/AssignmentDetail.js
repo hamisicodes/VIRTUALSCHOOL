@@ -67,7 +67,7 @@ const AssignmentDetail = (props) =>{
         }
         message.success('Submiting Assignment Completed!');
         createGradedAssignment(gradadeAssignmentRawData)
-        setRedirect("assignmentlist")
+        setRedirect("/assignmentlist")
 
         // console.log(gradadeAssignmentRawData)
         // redirectToTarget = () => {

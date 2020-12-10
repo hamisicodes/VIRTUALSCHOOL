@@ -26,13 +26,13 @@ class AssignmentSerializer(serializers.ModelSerializer):
     # overiding created method in views as to arrange data into its matching model and fields
     def create(self, request):
         collected_assignment_data = request.data
-        print(collected_assignment_data)
+        # print(collected_assignment_data)
         assignment = Assignment()
         # educator = User.objects.get(username=data['educator'])
         # assignment.educator = collected_assignment_data['educator']
         assignment.title = collected_assignment_data['title']
         assignment.save()
-        print(assignment.id)
+        # print(assignment.id)
         
         
         # looping though the questions array
@@ -61,6 +61,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
     
 class GradedAssignmentSerializer(serializers.ModelSerializer):
     student = StringSerializer(many = False)
+    assignment = StringSerializer(many=False)
     class Meta:
         model = Graded_Assignment
         fields = ("__all__")

@@ -17,8 +17,9 @@ function App() {
       <Layoutframe>
         <Switch>
         <Route path='/' exact component={ DemoList} />
-        <Route path= '/assignmentlist' component={AssignmentList}/>
         <Route path= '/assignment/:id' component={AssignmentDetail}/>
+        <Route  path= '/assignmentlist' component={AssignmentList}/>
+        
         <Route path = '/createAssignment' component={GroupedAssignmentCreate}/>
         
         {/* to introduce id for the student in particular, as for educators they ill have the full rights to view each student perfomances. */}
