@@ -17,12 +17,15 @@ const GroupedAssignmentCreate = (props) => {
 			answer : values.Question[i].Answer
 				
 			});
+		
 		}
 		const AssignmentData = {
 			educator :"educator_testing_hardcoded",
 			title: values.assignmentTitle,
 			questions
+			
 		}
+		console.log(AssignmentData)
 		message.success('Submiting Assignment Completed!');
 		createAssignment(AssignmentData)
 		this.props.form.resetFields(); 

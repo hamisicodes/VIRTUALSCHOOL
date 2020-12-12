@@ -27,6 +27,7 @@ SECRET_KEY = '^4^lheyw43-#02wkmxx05$30_@xh9nccxpodl2-jcj&y_5r^%d'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 
     'demo',
     'assignment',
+    'coursework'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'virtualschool.urls'
 
@@ -163,6 +166,10 @@ REST_FRAMEWORK = {
 # cors headers
 CORS_ALLOWED_ORIGINS = [
  
-    "http://localhost:3000",
+    "http://127.0.0.1:3000",
   
 ]
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_USERNAME_REQUIRED = False
