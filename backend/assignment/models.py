@@ -41,6 +41,9 @@ class Assignment(models.Model):
 
     def __str__(self):
         return self.title
+    class Meta:
+        ordering = ['-id']
+        
 class Graded_Assignment(models.Model):
     student = models.ForeignKey(Student, default=1, on_delete=models.CASCADE)
     assignment = models.ForeignKey(Assignment, on_delete=models.SET_NULL, blank= True, null= True)
@@ -54,6 +57,7 @@ class Graded_Assignment(models.Model):
 
 class Choice(models.Model):
     title = models.CharField(max_length=500)
+    
     
     def __str__(self):
         return self.title

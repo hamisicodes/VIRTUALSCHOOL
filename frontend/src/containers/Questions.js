@@ -40,7 +40,7 @@ const Questions = (props) =>{
                     <Step key={index} />
                 ))}
                 </Steps>
-                <div >{questions[current]}</div>
+                <div style={{fontSize:"em"}}>{questions[current]}</div>
                 <div >
                 {current < questions.length - 1 && (
                     <Button type="primary" onClick={() => next()}>

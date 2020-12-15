@@ -51,7 +51,15 @@ class AssignmentSerializer(serializers.ModelSerializer):
                new_choice.save()
                new_question.choices.add(new_choice)
                
-            new_question.answer =  Choice.objects.get(title = q['answer'])
+            # method to obtain one object of return choice objects
+            def get_c_object():
+                answers = Choice.objects.filter(title = q['answer'])
+                if answers:
+                    answer = answers[0]
+                return answer
+                
+               
+            new_question.answer =  get_c_object()
             new_question.assignment = assignment
             new_question.save()
             order +=1
