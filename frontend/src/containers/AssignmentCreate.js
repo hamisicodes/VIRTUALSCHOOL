@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Form, Input, Button , Space, message, Row,} from 'antd';
+import { Form, Input, Button , Space, message, Row, Col} from 'antd';
 import { MinusCircleOutlined, PlusSquareFilled } from '@ant-design/icons';
 
 const GroupedAssignmentCreate = (props) => {
@@ -22,6 +22,7 @@ const GroupedAssignmentCreate = (props) => {
 		const AssignmentData = {
 			educator :"educator_testing_hardcoded",
 			title: values.assignmentTitle,
+			slug: values.assignmentSlug,
 			questions
 		}
 		
@@ -60,17 +61,26 @@ const GroupedAssignmentCreate = (props) => {
 			<h1 style={{textAlign:"center"}}> Create Assignment</h1>
 			<Form.Item >
 				<Row type="flex" justify="center" align="middle" style={{minHeight: '10vh'}}>
-					<Form.Item name="assignmentTitle" fieldKey="ass"
-						style = {{
-							textAlign:"center",
-							width:"550px",
-							
-						}}
-							scrollToFirstError ={[true]}
-							rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
-							>
-						<Input placeholder="Assignment Title" />
-					</Form.Item>	
+					<Col span={18}>
+						<Form.Item name="assignmentTitle" fieldKey="ass"
+								scrollToFirstError ={[true]}
+								rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
+								>
+							<Input placeholder="Assignment Title" />
+							{/* <Input placeholder="slug; eg 'dhd646g'" /> */}
+						</Form.Item>
+					</Col>
+					<Col span={4}>
+						<Form.Item name="assignmentSlug" fieldKey="slug"
+								scrollToFirstError ={[true]}
+								rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
+								>
+							{/* <Input placeholder="Assignment Title" /> */}
+							<Input placeholder="slug; eg 'dhd646g'" />
+						</Form.Item>
+					</Col>
+
+						
 				</Row>
 			<Form.List name="Question" >
 			

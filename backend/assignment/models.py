@@ -38,6 +38,7 @@ class Student(models.Model):
 class Assignment(models.Model):
     title = models.CharField(max_length=500)
     educator = models.ForeignKey(Educator, default=1, on_delete = models.CASCADE)
+    slug = models.SlugField(max_length=100, default='aahdfia8')
 
     def __str__(self):
         return self.title

@@ -15,13 +15,13 @@ const AssignmentDetail = (props) =>{
     const [error, setError] = useState(null)
     const [answer, setAnswer] = useState({})
     const [redirect, setRedirect] = useState(null)
-    const ID = props.match.params.id
+    const ID = props.match.params.id[0]
     // console.log(ID)
 
     // Taking advantage of useEffect to get assignment questions.
     useEffect(()=>{
         setLoading(true)
-        fetch(`http://127.0.0.1:8000/api/assignments/${ID}/`)
+        fetch(`http://127.0.0.1:8000/api/assignments/${ID}`)
         .then(res => res.json())
         .then(data =>{
             setAssignment(data)
