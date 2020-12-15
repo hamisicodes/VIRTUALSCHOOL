@@ -3,6 +3,7 @@ import { Form, Input, Button , Space, message, Row,} from 'antd';
 import { MinusCircleOutlined, PlusSquareFilled } from '@ant-design/icons';
 
 const GroupedAssignmentCreate = (props) => {
+	const [formKey, setFormKey] = useState(0)
 	const { TextArea } = Input;
 	// const [loading, setLoading]= useState(false)
     const [error, setError] = useState(null)
@@ -17,18 +18,19 @@ const GroupedAssignmentCreate = (props) => {
 			answer : values.Question[i].Answer
 				
 			});
-		
 		}
 		const AssignmentData = {
 			educator :"educator_testing_hardcoded",
 			title: values.assignmentTitle,
 			questions
-			
 		}
-		console.log(AssignmentData)
+		
+		// console.log(AssignmentData)
 		message.success('Submiting Assignment Completed!');
+		// playing with form key to invoke re-rendering changing seting back to initial form
+		setFormKey({formKey: (formKey) + 1})
 		createAssignment(AssignmentData)
-		this.props.form.resetFields(); 
+		
 
 		// console.log("i am assignment detail",AssignmentData)
 	};
@@ -54,7 +56,7 @@ const GroupedAssignmentCreate = (props) => {
 		
 		<Form name="dynamic_form_nest_item" scrollToFirstError={true}	style = {{
 			textAlign: "center"
-		}}onFinish={onFinish}  autoComplete="off">
+		}}onFinish={onFinish}  autoComplete="off" key ={formKey}>
 			<h1 style={{textAlign:"center"}}> Create Assignment</h1>
 			<Form.Item >
 				<Row type="flex" justify="center" align="middle" style={{minHeight: '10vh'}}>
