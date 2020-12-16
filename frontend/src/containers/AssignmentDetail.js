@@ -15,7 +15,7 @@ const AssignmentDetail = (props) =>{
     const [error, setError] = useState(null)
     const [answer, setAnswer] = useState({})
     const [redirect, setRedirect] = useState(null)
-    const ID = props.match.params.id[0]
+    const ID = props.match.params.id
     // console.log(ID)
 
     // Taking advantage of useEffect to get assignment questions.

@@ -1,4 +1,5 @@
 from django.db import models
+# from django.contrib.auth.models import AbstractUser
 from rest_framework.generics import ListAPIView
 # from users.model import User
 
@@ -23,7 +24,9 @@ from rest_framework.generics import ListAPIView
 # Choice mode
 #   -title
 
-
+# class User(AbstractUser):
+#     is_student = models.BooleanField('student status', default=False)
+#     is_teacher = models.BooleanField('teacher status', default=False)
 class Educator(models.Model):
     educator_name = models.CharField(max_length=50)
 

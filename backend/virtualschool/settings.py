@@ -119,6 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# AUTH_USER_MODEL = 'core.User'
+# AUTH_USER_MODEL = 'assignment.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

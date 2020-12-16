@@ -49,7 +49,7 @@ const AssignmentList = () =>{
 						<List.Item>
 							<List.Item.Meta
 							avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-							title={<Link to={`/assignment/${item.id}${item.slug}/`}>{item.title}</Link>}
+							title={<Link to={`/assignment/${item.id}/${item.slug}/`}>{item.title}</Link>}
 							description="Ant Design, a design language for background applications, is refined by Ant UED Team"
 							/>
 						</List.Item>
