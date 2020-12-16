@@ -23,6 +23,12 @@ class AssignmentViewSet(viewsets.ModelViewSet):
         if assignment:
                 return Response(status=HTTP_201_CREATED)
         return Response (status=HTTP_400_BAD_REQUEST)
+    def update(self, request, pk):
+        query = Assignment.objects.get(pk)
+        serializer = AssignmentSerializer
+        pass
+    
+ 
 
 class GradedAssignmentListView(ListAPIView):
     serializer_class =  GradedAssignmentSerializer

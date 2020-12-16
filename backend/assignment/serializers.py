@@ -33,7 +33,9 @@ class AssignmentSerializer(serializers.ModelSerializer):
         assignment.title = collected_assignment_data['title']
         assignment.save()
         # print(assignment.id)
-        
+    # def destroy(self, request, pk):
+    #     data_to_be_deleted = request.data
+    #     data_to_be_deleted.delete
         
         # looping though the questions array
         order =1

@@ -1,6 +1,9 @@
 import React,{ useEffect, useState} from 'react'
 import { Redirect } from "react-router-dom";
-import { Card, Skeleton, Alert, message } from 'antd';
+import { Card, Skeleton, Alert, message, Button} from 'antd';
+import {
+  DeleteFilled
+  } from '@ant-design/icons';
 import Questions from './Questions';
 import Choices from '../components/Choices';
 
@@ -32,6 +35,49 @@ const AssignmentDetail = (props) =>{
             setLoading(true)
         })
     }, []);
+
+    
+    // MOFICATION TO GIVEN assignment. i.e put and delete
+    useEffect((opt)=>{
+        // const handleDelete = (opt)=>{
+        //     deleteMethod(opt)
+        // } 
+        // function handleDelete(opts){
+        //     setLoading(true)
+        //         fetch(`http://127.0.0.1:8000/api/assignments/${ID}`, {
+        //             method:'delete',
+        //             cache: 'no-cache',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //         })
+        //         .catch(error =>{
+        //             setError(error)
+        //         });
+        //         setRedirect("/assignmentlist")
+        //         if (redirect)
+        //         return <Redirect to={ redirect}/>
+        //     }
+    })
+ 
+        function handleDelete(opts){
+            setLoading(true)
+                fetch(`http://127.0.0.1:8000/api/assignments/${ID}`, {
+                    method:'delete',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .catch(error =>{
+                    setError(error)
+                });
+                setRedirect("/assignmentlist")
+                if (redirect)
+                window.location.reload(true)
+                    return <Redirect to={ redirect} setloading= {loading}/>
+            }
+
     const onChange = (e, questionId) => {
         answer[questionId] = e.target.value
      
@@ -98,7 +144,12 @@ const AssignmentDetail = (props) =>{
                 <div>
                     <Skeleton active />
                 </div> :(
-                <Card title={assignment.title} extra={<a href="#">More</a>}>
+                <Card title={assignment.title} extra={
+                <Button danger type="icon" onClick={handleDelete}>
+                <DeleteFilled />
+              </Button>
+            //   <Button type="primary" >edit</Button>
+            }>
                     {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
                         <Questions 
                             submit={handleSubmit}
