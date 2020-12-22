@@ -11,6 +11,7 @@ urlpatterns = [
     path('api/', include('demo.urls', namespace='demo')),
     path('api/assignments/', include('assignment.assignments.urls')),
     path('api/graded_assignments/', include('assignment.graded_assignments.urls')),
+    path('api/coursework/',include('coursework.urls'))
     
 ]
 
