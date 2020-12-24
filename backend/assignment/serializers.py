@@ -33,9 +33,11 @@ class AssignmentSerializer(serializers.ModelSerializer):
         assignment.title = collected_assignment_data['title']
         assignment.save()
         # print(assignment.id)
-    # def destroy(self, request, pk):
-    #     data_to_be_deleted = request.data
-    #     data_to_be_deleted.delete
+        
+    # def update(self, instance, pk):
+    #     Assignment = instance
+    #     Assignment.title = instance.title
+   
         
         # looping though the questions array
         order =1
@@ -58,7 +60,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
                 answers = Choice.objects.filter(title = q['answer'])
                 if answers:
                     answer = answers[0]
-                return answer
+                    return answer
                 
                
             new_question.answer =  get_c_object()

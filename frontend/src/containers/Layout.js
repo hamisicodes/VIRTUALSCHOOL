@@ -105,7 +105,7 @@ const AppLayout = (props) => {
           <Breadcrumb style={{ margin: '16px 0' }}>
       
                   {/* {props.userauthentication? props.is_educator(the createassignment link)} */}
-                  <Link to='/createAssignment'><Breadcrumb.Item>Create Assignent</Breadcrumb.Item></Link>
+                  <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>
                   <Link to='/assignmentlist'><Breadcrumb.Item >Assignments</Breadcrumb.Item></Link>
               </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
