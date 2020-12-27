@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 
     'corsheaders',
+    'bootstrap4',
+    'django_icons',
 
     'demo',
     'assignment',
@@ -74,7 +76,7 @@ ROOT_URLCONF = 'virtualschool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -175,3 +177,9 @@ CORS_ALLOWED_ORIGINS = [
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True 
 ACCOUNT_USERNAME_REQUIRED = False
+
+DJANGO_ICONS = {
+    "ICONS": {
+        "edit": {"name": "far fa-pencil"},
+    },
+}
