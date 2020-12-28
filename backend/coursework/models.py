@@ -20,15 +20,6 @@ class Profile(models.Model):
     @property
     def isSpecial(self):
         return self.user.is_staff
-    
-# student model that is related to the profile
-class Student(models.Model):
-    profile = models.OneToOneField(Profile , on_delete=models.CASCADE)
-    gender = models.CharField(max_length = 6 , blank=True)
-    admission_number = models.CharField(max_length = 100 , blank=True)
-
-    def __str__(self):
-       return f'Student-{self.profile}' 
 
 # Educator model that is related to the profile
 class Educator(models.Model):
@@ -38,3 +29,35 @@ class Educator(models.Model):
 
     def __str__(self):
          return f'Educator-{self.profile}' 
+
+
+def upload_post_image(instance,filename):
+    return f"{instance.title}/{filename}"
+
+class Course(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField(default = 'Course created successfully.Description should be inserted anytime soon')
+    educator = models.ForeignKey(Educator , on_delete=models.CASCADE)
+    slug = models.SlugField()
+    thumbnail = models.ImageField(upload_to =upload_post_image)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"{self.title}"
+    
+# student model that is related to the profile
+class Student(models.Model):
+    profile = models.OneToOneField(Profile , on_delete=models.CASCADE)
+    gender = models.CharField(max_length = 6 , blank=True)
+    admission_number = models.CharField(max_length = 100 , blank=True)
+    courses = models.ManyToManyField(Course,blank=True)
+    def __str__(self):
+       return f'{self.profile}' 
+
+
+
+
+
+
+
