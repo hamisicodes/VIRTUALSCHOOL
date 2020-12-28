@@ -67,11 +67,12 @@ class Choice(models.Model):
         return self.title
     
 class Question(models.Model):
+    order = models.SmallIntegerField()
     question = models.CharField(max_length=500)
     choices = models.ManyToManyField(Choice)
     answer = models.ForeignKey(Choice, on_delete=models.CASCADE, related_name='answer', null=True, blank=True)
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE, related_name = 'questions')
-    order = models.SmallIntegerField()
+   
 
     def __str__(self):
         return self.question
