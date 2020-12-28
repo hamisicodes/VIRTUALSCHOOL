@@ -1,5 +1,5 @@
 from django.contrib import admin
-from  .models import Profile,Educator,Student,Course
+from  .models import Profile,Educator,Student,Course,Module,Page
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.http import urlencode
@@ -52,4 +52,6 @@ admin.site.register(Profile,ProfileAdmin)
 admin.site.register(Educator,EducatorAdmin)
 admin.site.register(Student,StudentAdmin)
 admin.site.register(Course,CourseAdmin)
+admin.site.register(Module)
+admin.site.register(Page)
 

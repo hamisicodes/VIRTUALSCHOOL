@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-// import Layoutframe from './containers/Layoutframe';
+
 import AssignmentList from './containers/AssignmentList';
 import AssignmentDetail from './containers/AssignmentDetail';
 import DemoList from './components/DemoList';
@@ -13,6 +13,8 @@ import Login from './containers/Login';
 import SignUp from './containers/SignUp';
 import AppLayout from './containers/Layout';
 import { initialstate , authReducer } from './reducers'
+
+import CourseList from './containers/CourseList'
 
 import 'antd/dist/antd.less';
 import 'antd/dist/antd.css';
@@ -70,6 +72,7 @@ function App() {
         <AppRoute path = '/createAssignment'layout={AppLayout} component={GroupedAssignmentCreate}/> 
         {/* to introduce id for the student in particular, as for educators they ill have the full rights to view each student perfomances. */}
         <AppRoute path = '/gradedassignment'layout={AppLayout} component={GradedAssignment}/>
+        <AppRoute path = '/courses'layout={AppLayout} component={CourseList}/>
         <Route  path="/login" component={Login} />
         <Route  path="/signup" component={SignUp} />
         
