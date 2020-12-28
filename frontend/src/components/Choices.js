@@ -4,6 +4,7 @@ import { Radio } from 'antd';
 
 
 const radioStyle = {
+    textAlign: 'left',
     display: 'block',
     height: '30px',
     lineHeight: '30px',

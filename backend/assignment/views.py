@@ -13,6 +13,7 @@ from .serializers import AssignmentSerializer, GradedAssignmentSerializer
 
 class AssignmentViewSet(viewsets.ModelViewSet):
     serializer_class = AssignmentSerializer
+    serializer = AssignmentSerializer
     queryset = Assignment.objects.all()
     
     # overiding the create method
@@ -20,9 +21,14 @@ class AssignmentViewSet(viewsets.ModelViewSet):
         serializer = AssignmentSerializer (data =request.data)
         if serializer.is_valid():
             assignment = serializer.create(request)
-        if assignment:
+            if assignment:
                 return Response(status=HTTP_201_CREATED)
         return Response (status=HTTP_400_BAD_REQUEST)
+    
+   
+ 
+    
+ 
 
 class GradedAssignmentListView(ListAPIView):
     serializer_class =  GradedAssignmentSerializer

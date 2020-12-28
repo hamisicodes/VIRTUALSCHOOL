@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Form, Input, Button , Space, message, Row,} from 'antd';
+import { Form, Input, Button , Space, message, Row, Col} from 'antd';
 import { MinusCircleOutlined, PlusSquareFilled } from '@ant-design/icons';
 
 const GroupedAssignmentCreate = (props) => {
+	const [formKey, setFormKey] = useState(0)
 	const { TextArea } = Input;
 	// const [loading, setLoading]= useState(false)
     const [error, setError] = useState(null)
@@ -17,18 +18,20 @@ const GroupedAssignmentCreate = (props) => {
 			answer : values.Question[i].Answer
 				
 			});
-		
 		}
 		const AssignmentData = {
 			educator :"educator_testing_hardcoded",
 			title: values.assignmentTitle,
+			slug: values.assignmentSlug,
 			questions
-			
 		}
-		console.log(AssignmentData)
+		
+		// console.log(AssignmentData)
 		message.success('Submiting Assignment Completed!');
+		// playing with form key to invoke re-rendering changing seting back to initial form
+		setFormKey({formKey: (formKey) + 1})
 		createAssignment(AssignmentData)
-		this.props.form.resetFields(); 
+		
 
 		// console.log("i am assignment detail",AssignmentData)
 	};
@@ -54,21 +57,30 @@ const GroupedAssignmentCreate = (props) => {
 		
 		<Form name="dynamic_form_nest_item" scrollToFirstError={true}	style = {{
 			textAlign: "center"
-		}}onFinish={onFinish}  autoComplete="off">
+		}}onFinish={onFinish}  autoComplete="off" key ={formKey}>
 			<h1 style={{textAlign:"center"}}> Create Assignment</h1>
 			<Form.Item >
 				<Row type="flex" justify="center" align="middle" style={{minHeight: '10vh'}}>
-					<Form.Item name="assignmentTitle" fieldKey="ass"
-						style = {{
-							textAlign:"center",
-							width:"550px",
-							
-						}}
-							scrollToFirstError ={[true]}
-							rules={[{ required: true, message: 'Missing first name' }]}
-							>
-						<Input placeholder="Assignment Title" />
-					</Form.Item>	
+					<Col span={18}>
+						<Form.Item name="assignmentTitle" fieldKey="ass"
+								scrollToFirstError ={[true]}
+								rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
+								>
+							<Input placeholder="Assignment Title" />
+							{/* <Input placeholder="slug; eg 'dhd646g'" /> */}
+						</Form.Item>
+					</Col>
+					<Col span={4}>
+						<Form.Item name="assignmentSlug" fieldKey="slug"
+								scrollToFirstError ={[true]}
+								rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
+								>
+							{/* <Input placeholder="Assignment Title" /> */}
+							<Input placeholder="slug; eg 'dhd646g'" />
+						</Form.Item>
+					</Col>
+
+						
 				</Row>
 			<Form.List name="Question" >
 			
@@ -87,7 +99,7 @@ const GroupedAssignmentCreate = (props) => {
 						
 						name={[field.name, 'QuestionStatement']}
 						fieldKey={[field.fieldKey, 'QuestionStatementId']}
-						rules={[{ required: true, message: 'Missing first name' }]}
+						rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
 					>
 						<TextArea placeholder="QuestionStatement" autoSize={{ minRows: 1, maxRows: 10 }}/>
 					</Form.Item>
@@ -99,7 +111,7 @@ const GroupedAssignmentCreate = (props) => {
 						style={{textAlign:"center"}}
 						name={[field.name, 'ChoiceA']}
 							fieldKey={[field.fieldKey, '1']}
-						rules={[{ required: true, message: 'Missing first name' }]}
+						rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
 					>
 						<TextArea placeholder="choice A" autoSize={{ minRows: 1, maxRows: 10 }}/>
 					</Form.Item>
@@ -108,7 +120,7 @@ const GroupedAssignmentCreate = (props) => {
 						style={{textAlign:"center"}}
 						name={[field.name, 'ChoiceB']}
 							fieldKey={[field.fieldKey, '2']}
-						rules={[{ required: true, message: 'Missing first name' }]}
+						rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
 					>
 						<TextArea placeholder="choice B" autoSize={{ minRows: 1, maxRows: 10 }}/>
 					</Form.Item>
@@ -117,7 +129,7 @@ const GroupedAssignmentCreate = (props) => {
 						style={{textAlign:"center"}}
 						name={[field.name, 'ChoiceC']}
 							fieldKey={[field.fieldKey, '3']}
-						rules={[{ required: true, message: 'Missing first name' }]}
+						rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
 					>
 						<TextArea placeholder="choice C" autoSize={{ minRows: 1, maxRows: 10 }}/>
 					</Form.Item>
@@ -126,7 +138,7 @@ const GroupedAssignmentCreate = (props) => {
 						style={{textAlign:"center"}}
 						name={[field.name, 'ChoiceD']}
 							fieldKey={[field.fieldKey, '4']}
-						rules={[{ required: true, message: 'Missing first name' }]}
+						rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
 					>
 						<TextArea placeholder="choice D" autoSize={{ minRows: 1, maxRows: 10 }}/>
 					</Form.Item>
@@ -136,7 +148,7 @@ const GroupedAssignmentCreate = (props) => {
 						style={{textAlign:"center"}}
 						name={[field.name, 'Answer']}
 							fieldKey={[field.fieldKey, '5']}
-						rules={[{ required: true, message: 'Missing first name' }]}
+						rules={[{ required: true, message: 'Must Be Filled/Removed' }]}
 					>
 						<TextArea placeholder="What's Answer" autoSize={{ minRows: 1, maxRows: 10 }}/>
 					</Form.Item>

@@ -1,6 +1,9 @@
 import React,{ useEffect, useState} from 'react'
 import { Redirect } from "react-router-dom";
-import { Card, Skeleton, Alert, message } from 'antd';
+import { Card, Skeleton, Alert, message, Button} from 'antd';
+import {
+  DeleteFilled
+  } from '@ant-design/icons';
 import Questions from './Questions';
 import Choices from '../components/Choices';
 
@@ -18,10 +21,22 @@ const AssignmentDetail = (props) =>{
     const ID = props.match.params.id
     // console.log(ID)
 
+
+    const getExtra =()=>(
+        <>
+            <Button secondary type="icon" onClick={handleUpdate}>
+               Update
+            </Button>
+            <Button danger type="icon" onClick={handleDelete}>
+                <DeleteFilled />
+            </Button>
+        </>
+    )
+
     // Taking advantage of useEffect to get assignment questions.
     useEffect(()=>{
         setLoading(true)
-        fetch(`http://127.0.0.1:8000/api/assignments/${ID}/`)
+        fetch(`http://127.0.0.1:8000/api/assignments/${ID}`)
         .then(res => res.json())
         .then(data =>{
             setAssignment(data)
@@ -32,6 +47,35 @@ const AssignmentDetail = (props) =>{
             setLoading(true)
         })
     }, []);
+
+    
+    // MOFICATION TO GIVEN assignment. i.e put and delete
+        function handleDelete(opts){
+            setLoading(true)
+                fetch(`http://127.0.0.1:8000/api/assignments/${ID}`, {
+                    method:'delete',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .catch(error =>{
+                    setError(error)
+                });
+                setRedirect("/assignmentlist")
+                if (redirect)
+                    return <Redirect to={ redirect} setloading= {loading}/>
+            }
+        function handleUpdate(opts){
+            fetch(`http://127.0.0.1:8000/api/assignments/${ID}/`, {
+                method:'put',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+        }
+
     const onChange = (e, questionId) => {
         answer[questionId] = e.target.value
      
@@ -74,7 +118,6 @@ const AssignmentDetail = (props) =>{
         //     props.history.push(`/target`)
         //   }
     }
-
           
     // console.log(answer)
     const studentAnswer = answer
@@ -98,7 +141,9 @@ const AssignmentDetail = (props) =>{
                 <div>
                     <Skeleton active />
                 </div> :(
-                <Card title={assignment.title} extra={<a href="#">More</a>}>
+                <Card title={assignment.title} extra={ getExtra()
+            //   <Button type="primary" >edit</Button>
+            }>
                     {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
                         <Questions 
                             submit={handleSubmit}

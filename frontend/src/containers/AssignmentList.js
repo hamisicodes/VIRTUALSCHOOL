@@ -8,7 +8,7 @@ import { List, Avatar,  Alert, Skeleton  } from 'antd';
 const AssignmentList = () =>{
     const [assignments,setData] = useState([])
     const [loading, setLoading]= useState(false)
-    const [error, setError] = useState(null)
+	const [error, setError] = useState(null)
 
 
     useEffect(()=>{
@@ -46,10 +46,13 @@ const AssignmentList = () =>{
 						itemLayout="horizontal"
 						dataSource={assignments}
 						renderItem={item => (
-						<List.Item>
+						<List.Item
+						
+						>
 							<List.Item.Meta
 							avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-							title={<Link to={`/assignment/${item.id}`}>{item.title}</Link>}
+							title={<Link to={`/assignment/${item.id}/${item.slug}/`}>{item.title}</Link>}
+							
 							description="Ant Design, a design language for background applications, is refined by Ant UED Team"
 							/>
 						</List.Item>
