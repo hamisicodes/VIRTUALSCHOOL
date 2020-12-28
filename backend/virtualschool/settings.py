@@ -76,7 +76,9 @@ ROOT_URLCONF = 'virtualschool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
+        'DIRS': [os.path.join('templates')],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -161,10 +163,15 @@ SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated',
+
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
        
     ]
+    
 }
 
 # cors headers

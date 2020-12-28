@@ -1,23 +1,17 @@
-{%extends 'admin/base.html'%}{% load static %}{% load icons %}
-
-
-
+{% extends 'admin/base.html' %}
+{% load static %}
 
 {% block branding %}
-<h1 id="head" >VirtualSchool Admin</h1>
-{% icon 'edit' %}
+
+<h1 id="head">
+    <img src="{% static 'images/logo.png' %}" width="35" height="35" alt="">
+    Virtual School
+</h1>
+
 {% endblock %}
+
 {% block extrastyle %}
-<link rel="stylesheet" href="{% static 'css/adminstyle.css' %}">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.
-˓→css"
-rel="stylesheet"
-integrity="sha384-
-˓→wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-crossorigin="anonymous"
->
-{% endblock %}
-{% block sidenav%}
+<link rel="stylesheet" href="{% static 'css/adminstyles.css' %}">
 
 {% endblock %}
 
