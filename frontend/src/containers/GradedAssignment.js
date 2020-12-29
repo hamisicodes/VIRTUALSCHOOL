@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { List, Alert, Skeleton } from 'antd';
 import Result from "../components/Results";
 const GradedAssignment = ()=>{
+    let token = localStorage.getItem('Key')
     const [loading, setLoading ] = useState(false);
     const [error, setError] = useState(null)
     const [data, setData] =useState([])
@@ -9,7 +10,12 @@ const GradedAssignment = ()=>{
     useEffect(()=>{
 
         setLoading(true);
-        fetch('http://127.0.0.1:8000/api/graded_assignments/')
+        fetch('http://127.0.0.1:8000/api/graded_assignments/', {
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.json())
         .then(data =>{
             setData (data);

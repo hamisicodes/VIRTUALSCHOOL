@@ -13,6 +13,7 @@ const cardStyle ={
     marginBottom :'30px'
 }
 const AssignmentDetail = (props) =>{
+    const token = localStorage.getItem('key')
     const [assignment, setAssignment] = useState({})
     const [loading, setLoading]= useState(false)
     const [error, setError] = useState(null)
@@ -36,7 +37,12 @@ const AssignmentDetail = (props) =>{
     // Taking advantage of useEffect to get assignment questions.
     useEffect(()=>{
         setLoading(true)
-        fetch(`http://127.0.0.1:8000/api/assignments/${ID}`)
+        fetch(`http://127.0.0.1:8000/api/assignments/${ID}`, {
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json'
+            },
+        })
         .then(res => res.json())
         .then(data =>{
             setAssignment(data)
@@ -56,6 +62,7 @@ const AssignmentDetail = (props) =>{
                     method:'delete',
                     cache: 'no-cache',
                     headers: {
+                        'Authorization': `Token ${token}`,
                         'Content-Type': 'application/json'
                     },
                 })
@@ -91,6 +98,7 @@ const AssignmentDetail = (props) =>{
             method:'post',
             cache: 'no-cache',
             headers: {
+                'Authorization': `Token ${token}`,
                 'Content-Type': 'application/json'
               },
             body: JSON.stringify(opts)

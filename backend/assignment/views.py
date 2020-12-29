@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
+# from rest_framework.authentication import TokenAuthentication
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
 from rest_framework.status import (
@@ -12,6 +14,8 @@ from .serializers import AssignmentSerializer, GradedAssignmentSerializer
 
 
 class AssignmentViewSet(viewsets.ModelViewSet):
+    # permission_classes = (AllowAny,) 
+    # authentication_classes = (TokenAuthentication,) 
     serializer_class = AssignmentSerializer
     serializer = AssignmentSerializer
     queryset = Assignment.objects.all()

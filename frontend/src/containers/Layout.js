@@ -40,7 +40,7 @@ const AppLayout = (props) => {
   useEffect(()=>{
     // will only run once when the app loads
   
-      console.log(token);
+      // console.log(token);
 
       if(token){
         // The user just logged in or was logged in
@@ -58,7 +58,7 @@ const AppLayout = (props) => {
       }
     
   },[])
-    console.log(user)
+    // console.log(user)
     
     return (
       <Layout style={{ minHeight: '100vh' }}>

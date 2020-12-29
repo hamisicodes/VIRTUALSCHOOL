@@ -44,7 +44,7 @@ const tailLayout = {
 
 const Login = () => {
   const onFinish = (values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo) => {

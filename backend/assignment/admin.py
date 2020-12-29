@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin.helpers import InlineAdminFormSet
-from .models import Choice, Assignment, Question, Graded_Assignment,Educator, Student
+from .models import Choice, Assignment, Question, Graded_Assignment
 from django.contrib.auth.admin import UserAdmin
 # from .models import User
 
@@ -11,8 +11,8 @@ from django.contrib.auth.admin import UserAdmin
 # admin.site.register(User, UserAdmin)
 admin.site.register(Choice)
 admin.site.register(Graded_Assignment)
-admin.site.register(Educator)
-admin.site.register(Student)
+# admin.site.register(Educator)
+# admin.site.register(Student)
 
 
 
@@ -25,7 +25,7 @@ class AssignmentAdmin(admin.ModelAdmin):
     inlines = [TabularQuestion]
     fields = (
         "title",
-        "educator",
+        # "educator",
         "slug"
         
     )

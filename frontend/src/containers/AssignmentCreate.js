@@ -3,6 +3,7 @@ import { Form, Input, Button , Space, message, Row, Col} from 'antd';
 import { MinusCircleOutlined, PlusSquareFilled } from '@ant-design/icons';
 
 const GroupedAssignmentCreate = (props) => {
+	const token = localStorage.getItem('key')
 	const [formKey, setFormKey] = useState(0)
 	const { TextArea } = Input;
 	// const [loading, setLoading]= useState(false)
@@ -41,6 +42,7 @@ const GroupedAssignmentCreate = (props) => {
             method:'post',
             cache: 'no-cache',
             headers: {
+				'Authorization': `Token ${token}`,
                 'Content-Type': 'application/json'
 			  },
 			

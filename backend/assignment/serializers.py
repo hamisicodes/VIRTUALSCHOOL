@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Assignment, Question, Graded_Assignment, Choice
+from django.contrib.auth.models import User
 
 class StringSerializer(serializers.StringRelatedField):
     def to_internal_value(self, value):
@@ -28,12 +29,12 @@ class AssignmentSerializer(serializers.ModelSerializer):
         collected_assignment_data = request.data
         # print(collected_assignment_data)
         assignment = Assignment()
-        # educator = User.objects.get(username=data['educator'])
-        # assignment.educator = collected_assignment_data['educator']
+        assignment.educator = request.user
         assignment.title = collected_assignment_data['title']
         assignment.save()
-        # print(assignment.id)
-        
+        print('below is me')
+        print(request.user)
+       
     # def update(self, instance, pk):
     #     Assignment = instance
     #     Assignment.title = instance.title
