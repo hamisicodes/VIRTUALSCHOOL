@@ -32,8 +32,8 @@ class AssignmentSerializer(serializers.ModelSerializer):
         assignment.educator = request.user
         assignment.title = collected_assignment_data['title']
         assignment.save()
-        print('below is me')
-        print(request.user)
+        # print('below is me')
+        # print(request.user)
        
     # def update(self, instance, pk):
     #     Assignment = instance

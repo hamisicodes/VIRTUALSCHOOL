@@ -22,14 +22,14 @@ const { SubMenu } = Menu;
 
 
 const AppLayout = (props) => {
-
-
+  // const currentUser = state.auth.username
+  // console.log(currentUser)
   const [collapsed,setCollapsed] = useState(true)
   const [{ user }, dispatch] = useReducer(authReducer,initialstate)
   const token = localStorage.getItem('key')
 
   const onCollapse = collapsed => {
-    console.log(collapsed);
+    // console.log(collapsed);
     setCollapsed(collapsed);
   };
 
@@ -105,7 +105,10 @@ const AppLayout = (props) => {
           <Breadcrumb style={{ margin: '16px 0' }}>
       
                   {/* {props.userauthentication? props.is_educator(the createassignment link)} */}
-                  <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>
+                  {/* {user.role ==='is_staff' &&  */}
+                    <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>
+                  
+                
                   <Link to='/assignmentlist'><Breadcrumb.Item >Assignments</Breadcrumb.Item></Link>
               </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>

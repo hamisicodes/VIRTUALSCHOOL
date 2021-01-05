@@ -63,17 +63,15 @@ const Login = () => {
   
     axios.post(`http://127.0.0.1:8000/dj-rest-auth/login/`, { email,password })
       .then(res => {
-       
         console.log(res.data);
         console.log(res);
-        localStorage.setItem('key',res.data.key)
+        let token = res.data.key;
+        localStorage.setItem('key',token)
         history.push('/')
       })
   }
-
   return (
     <>
-
     <Form
       {...layout}
       name="basic"

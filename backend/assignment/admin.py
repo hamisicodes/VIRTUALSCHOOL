@@ -8,15 +8,10 @@ from django.contrib.auth.admin import UserAdmin
 
 
 # Register your models here.
-# admin.site.register(User, UserAdmin)
 admin.site.register(Choice)
 admin.site.register(Graded_Assignment)
-# admin.site.register(Educator)
-# admin.site.register(Student)
 
-
-
-# registering Assignent to have customization in admin
+    # registering Assignent to have customization in admin
 class TabularQuestion(admin.TabularInline):
     model = Question
     extra = 1 
@@ -25,12 +20,12 @@ class AssignmentAdmin(admin.ModelAdmin):
     inlines = [TabularQuestion]
     fields = (
         "title",
-        # "educator",
+        "educator",
         "slug"
         
     )
+    list_display_links=['title']
+    list_display = ("educator","title")
     search_fields = ('title', 'educator')
 
-
-# admin.site.register(Assignment, AssignmentAdmin)
 
