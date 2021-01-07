@@ -24,7 +24,7 @@ const { SubMenu } = Menu;
 const AppLayout = (props) => {
 
 
-  const [collapsed,setCollapsed] = useState(true)
+  const [collapsed,setCollapsed] = useState(false)
   const [{ user }, dispatch] = useReducer(authReducer,initialstate)
   const token = localStorage.getItem('key')
 

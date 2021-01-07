@@ -44,7 +44,7 @@ class Course(models.Model):
     modified = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.title}"
+        return self.title
     
 # student model that is related to the profile
 class Student(models.Model):

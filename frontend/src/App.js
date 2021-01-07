@@ -15,6 +15,7 @@ import AppLayout from './containers/Layout';
 import { initialstate , authReducer } from './reducers'
 
 import CourseList from './containers/CourseList'
+import CourseDetail from './containers/CourseDetail'
 
 import 'antd/dist/antd.less';
 import 'antd/dist/antd.css';
@@ -72,7 +73,8 @@ function App() {
         <AppRoute path = '/createAssignment'layout={AppLayout} component={GroupedAssignmentCreate}/> 
         {/* to introduce id for the student in particular, as for educators they ill have the full rights to view each student perfomances. */}
         <AppRoute path = '/gradedassignment'layout={AppLayout} component={GradedAssignment}/>
-        <AppRoute path = '/courses'layout={AppLayout} component={CourseList}/>
+        <AppRoute exact path = '/courses/'layout={AppLayout} component={CourseList}/>
+        <AppRoute path = '/courses/:courseSlug'layout={AppLayout} component={CourseDetail}/>
         <Route  path="/login" component={Login} />
         <Route  path="/signup" component={SignUp} />
         

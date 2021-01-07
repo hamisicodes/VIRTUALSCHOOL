@@ -1,4 +1,5 @@
 import React,{ useState,useEffect} from 'react'
+import { Link } from "react-router-dom";
 import { Button } from 'antd';
 
 function CourseList() {
@@ -29,14 +30,18 @@ function CourseList() {
             )}
                         {loading? <div>Loading...</div> : (
                 <div>
-                    {data && data.map(demo => {
+                    {data && data.map(course => {
                         return(
                             <>
                             <div class="card" style={{padding:50}}>
-                            <img src={demo.thumbnail} alt="Avatar" style={ {padding:10 , width:200 , height:200} }/>
+
+                            <Link to={`/courses/${course.slug}/`}>
+                                <img src={course.thumbnail} alt="Avatar" style={ {padding:10 , width:200 , height:200} }/>
+                            </Link>
                             <div class="container">
-                                <h4><b>{demo.title}</b></h4>
+                                <h4><b>{course.title}</b></h4>
                                 <Button type="primary">Enroll</Button>
+                                
                             </div>
                             </div>
                             </>
