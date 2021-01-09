@@ -4,6 +4,7 @@ const DemoList = () => {
     const [data, setData] = useState(null)
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState(null)
+    
     useEffect(() => {
         setLoading(true)
         fetch('http://127.0.0.1:8000/api/demo/')

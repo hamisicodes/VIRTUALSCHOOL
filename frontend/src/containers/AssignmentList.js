@@ -9,11 +9,17 @@ const AssignmentList = () =>{
     const [assignments,setData] = useState([])
     const [loading, setLoading]= useState(false)
 	const [error, setError] = useState(null)
-
+	let token = localStorage.getItem('key')
 
     useEffect(()=>{
         setLoading(true)
-        fetch('http://127.0.0.1:8000/api/assignments/')
+        fetch('http://127.0.0.1:8000/api/assignments/',{
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/Json',
+				'Authorization': `Token ${token}`
+			},
+		})
         .then(res => res.json())
         .then(data =>{
             setData(data)
