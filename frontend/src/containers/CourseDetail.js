@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Tree } from 'antd';
+import List from '../components/List';
 import {
     DownOutlined,
     FrownOutlined,
@@ -10,43 +11,20 @@ import {
   } from '@ant-design/icons';
   
 
-  let treeData = [
-    {
-      title: 'parent 1',
-      key: '0-0',
-      icon: <SmileOutlined />,
-      children: [
-        {
-          title: 'leaf',
-          key: '0-0-0',
-          icon: <MehOutlined />,
-        },
-        {
-          title: 'leaf',
-          key: '0-0-1',
-          icon: ({ selected }) => (selected ? <FrownFilled /> : <FrownOutlined />),
-        },
-      ],
-    },
-    
-  ];
+
   
-
-
-
 function CourseDetail() {
 
-    const { courseSlug } = useParams()
-    const [data, setData] = useState(null)
-    const [loading,setLoading] = useState(false)
-    const [error,setError] = useState(null)
-    const [newData , setNewData] = useState([])
-    let token = localStorage.getItem('key')
-   
-
-
+    const { courseSlug } = useParams();
+    const [data, setData] = useState(null);
+    const [loading,setLoading] = useState(false);
+    const [error,setError] = useState(null);
+  
+    let token = localStorage.getItem('key');
+    let newTreedata = []
 
     useEffect(() => {
+
         setLoading(true)
         fetch(`http://127.0.0.1:8000/api/coursework/${courseSlug}/`,{
 			method: 'GET',
@@ -56,26 +34,12 @@ function CourseDetail() {
 			},
 		})
         .then(res => res.json())
-        .then(data =>{
+        .then(apiData =>{
             console.log(courseSlug)
-            console.log(data)
-            setData(data)
-            setNewData(treeData)
-            console.log(...newData)
-
-            for(let i = 0 ; i < data.length; i++){
-                treeData[i].title = data[i].title
-               
-  
-                // treeData[i].children = data[i].pages.map(page => {
-                //   treeData[i].children.title = page.title
-                //   treeData[i].children.key = page.id
-                // })
-                // for(let j = 0 ; j < data.length; j++){}
-
-            }
             
-      
+            setData(apiData);
+            console.log(data);
+            
             setLoading(false)
         })
         .catch(error => {
@@ -84,32 +48,44 @@ function CourseDetail() {
         })
     },[])
 
+// Algorithm for manipulating treeData
+    if (data){
+      for(let i = 0 ; i < data.length; i++ ){
+       let obj = data[i];
+        obj.key = `${i}`
+        obj.icon = <SmileOutlined />
+        obj.children = data[i].pages;
+
+        for(let j = 0 ; j< obj.children.length; j++){
+            obj.children[j].key = `${i}-${j}`;
+            obj.children[j].title = data[i].pages[j].header ;
+            obj.children[j].icon =  <MehOutlined /> ;
+
+        }
+
+        newTreedata.push(obj);
+
+      }
+   
+    }
+    
+    
+
 
 
     return (
-        <div>
-        { data && data.map(module =>(
-            // <div>
-            //    {module.title} 
-            //    {module.pages.map(page => (
-            //        <b><h1 style={{color:'green'}}>{page.header}</h1></b>
-            //    ))}
-            // </div>
-            <Tree
-              showIcon
-              defaultExpandAll
-              defaultSelectedKeys={['0-0-0']}
-              switcherIcon={<DownOutlined />}
-              treeData={treeData}
-            />
 
-        ))}
-
-
-        </div>
-
-
-    )
+      <Tree
+      showIcon
+      defaultExpandAll
+      defaultSelectedKeys={['0-0-0']}
+      switcherIcon={<DownOutlined />}
+      treeData={newTreedata}
+    />
+  
+    );
 }
+
+
 
 export default CourseDetail
