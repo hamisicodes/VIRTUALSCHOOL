@@ -26,7 +26,7 @@ import './App.css';
 
 const AppRoute = ({component:Component , layout:Layout, ...rest}) => (
   <Route {...rest} render={props =>(
-    <Layout><Component {...props}></Component></Layout>
+    <Layout><Component {...props} ></Component></Layout>
   )}>
   </Route>
 )
@@ -57,10 +57,15 @@ function App() {
       }
     
   },[token])
+         // call backfunctiion to obtain user object from course list component
+         const objectUser = (userObjectData) =>{
+          console.log(userObjectData)
+        }
 
 
 
   return (
+    <>
     
     <Router>
     <div className="App">
@@ -77,9 +82,9 @@ function App() {
         <AppRoute path = '/courses/:courseSlug'layout={AppLayout} component={CourseDetail}/>
         <Route  path="/login" component={Login} />
         <Route  path="/signup" component={SignUp} />
-        
     </div>
     </Router>
+    </>
   );
 }
 

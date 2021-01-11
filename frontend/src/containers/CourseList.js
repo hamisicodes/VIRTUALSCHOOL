@@ -2,26 +2,32 @@ import React,{ useState,useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { Button } from 'antd';
 
-function CourseList() {
-    const [data , setData] = useState(null)
+function CourseList(props) {
+    const data = props.courseData
+    // console.log(data)
+    // const [data , setData] = useState(null)
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState(null)
-
-    useEffect(() =>{
-        setLoading(true)
-        fetch('http://127.0.0.1:8000/api/coursework/')
-        .then(res => res.json())
-        .then(data =>{
-            setData(data)
-            setLoading(false)
-        })
-        .catch(error => {
-            setError(error.message)
-            setLoading(false)
-        })
-        
-    },[])
-
+    let token = localStorage.getItem('key');
+    // useEffect(() =>{
+    //     setLoading(true)
+    //     fetch('http://127.0.0.1:8000/api/coursework/',{
+	// 		method: 'GET',
+	// 		headers:{
+	// 			'Content-Type': 'application/Json',
+	// 			'Authorization': `Token ${token}`
+    //         },
+    //     })
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         setData(data)
+    //         setLoading(false)
+    //     })
+    //     .catch(error => {
+    //         setError(error.message)
+    //         setLoading(false)
+    //     })
+    // },[])
     return (
         <div>
             <h1>Courses Available</h1>

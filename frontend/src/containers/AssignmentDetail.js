@@ -56,7 +56,7 @@ const AssignmentDetail = (props) =>{
     }, []);
 
     
-    // MOFICATION TO GIVEN assignment. i.e put and delete
+    // MODIFICATION TO GIVEN assignment. i.e put and delete
         function handleDelete(opts){
             setLoading(true)
                 fetch(`http://127.0.0.1:8000/api/assignments/${ID}`, {

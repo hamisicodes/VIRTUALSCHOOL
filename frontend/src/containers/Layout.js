@@ -11,6 +11,7 @@ import {
   UserOutlined,
   PercentageOutlined,
 } from '@ant-design/icons';
+import CourseList from './CourseList';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -22,12 +23,49 @@ const { SubMenu } = Menu;
 
 
 const AppLayout = (props) => {
-
-
   const [collapsed,setCollapsed] = useState(false)
-
   const [{ user }, dispatch] = useReducer(authReducer,initialstate)
   const token = localStorage.getItem('key')
+  const [courseData , setcourseData] = useState(null)
+  const [loading,setLoading] = useState(false)
+  const [error,setError] = useState(null)
+  let userDetail = {}
+
+  useEffect(() =>{
+    setLoading(true)
+    fetch('http://127.0.0.1:8000/api/coursework/',{
+  method: 'GET',
+  headers:{
+    'Content-Type': 'application/Json',
+    'Authorization': `Token ${token}`
+        },
+    })
+    .then(res => res.json())
+    .then(data =>{
+        setcourseData(data)
+        setLoading(false)
+    })
+    .catch(error => {
+        setError(error.message)
+        setLoading(false)
+    })
+},[])
+
+
+if (courseData){
+    const [{user}] = courseData
+    userDetail = user
+  }
+  
+
+  // using react.clone_element to pass down some addition props to course_list component
+  const children = React.Children.map(props.children, CourseList =>{
+    return React.cloneElement(CourseList, {
+      courseData: courseData
+    })
+  })
+
+
 
   const onCollapse = collapsed => {
     // console.log(collapsed);
@@ -42,7 +80,6 @@ const AppLayout = (props) => {
     // will only run once when the app loads
   
       // console.log(token);
-
       if(token){
         // The user just logged in or was logged in
         
@@ -59,9 +96,10 @@ const AppLayout = (props) => {
       }
     
   },[])
-    // console.log(user)
-    
+
     return (
+      <>
+    
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
           <div className="logo" />
@@ -106,19 +144,21 @@ const AppLayout = (props) => {
           <Breadcrumb style={{ margin: '16px 0' }}>
       
                   {/* {props.userauthentication? props.is_educator(the createassignment link)} */}
-                  {/* {user.role ==='is_staff' &&  */}
-                    <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>
+                  { userDetail.is_staff?
+                    <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>: null
+                    }
                   
                 
                   <Link to='/assignmentlist'><Breadcrumb.Item >Assignments</Breadcrumb.Item></Link>
               </Breadcrumb>
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              {props.children}
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }} >
+              {children}
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Virtual school ©2020 </Footer>
         </Layout>
       </Layout>
+      </>
     );
   }
   
