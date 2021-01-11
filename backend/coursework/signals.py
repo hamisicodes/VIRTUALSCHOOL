@@ -10,7 +10,6 @@ def post_save_create_profile(sender,instance,created, **kwargs):
 
 @receiver(post_save , sender=Profile)
 def post_save_create_student_or_educator(sender,instance,created, **kwargs):
-    print(instance.isSpecial)
     if instance.isSpecial:
         Educator.objects.create(profile = instance)
     else:

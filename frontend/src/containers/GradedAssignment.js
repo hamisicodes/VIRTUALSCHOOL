@@ -1,25 +1,33 @@
 import React, { useEffect, useState} from 'react';
 import { List, Alert, Skeleton } from 'antd';
 import Result from "../components/Results";
+
+let token = localStorage.getItem('key')
 const GradedAssignment = ()=>{
+   
+    console.log(token)
     const [loading, setLoading ] = useState(false);
     const [error, setError] = useState(null)
     const [data, setData] =useState([])
 
     useEffect(()=>{
-
-        setLoading(true);
-        fetch('http://127.0.0.1:8000/api/graded_assignments/')
+        setLoading(true)
+        fetch('http://127.0.0.1:8000/api/graded_assignments/',{
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/Json',
+                'Authorization': `Token ${token}`
+            },
+        })
         .then(res => res.json())
         .then(data =>{
-            setData (data);
-            setLoading(false);
+            setData(data)
+            setLoading(false)
         })
         .catch(error =>{
             setError(error.message)
             setLoading(true)
         })
-
     }, [])
     // console.log(data)
       return(

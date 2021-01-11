@@ -177,7 +177,8 @@ REST_FRAMEWORK = {
 # cors headers
 CORS_ALLOWED_ORIGINS = [
  
-    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3000", 
+    
   
 ]
 
@@ -185,8 +186,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True 
 ACCOUNT_USERNAME_REQUIRED = False
 
-DJANGO_ICONS = {
-    "ICONS": {
-        "edit": {"name": "far fa-pencil"},
-    },
-}
+# DJANGO_ICONS = {
+#     "ICONS": {
+#         "edit": {"name": "far fa-pencil"},
+#     },
+# }

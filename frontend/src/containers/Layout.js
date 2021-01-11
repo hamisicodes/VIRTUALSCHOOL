@@ -25,11 +25,12 @@ const AppLayout = (props) => {
 
 
   const [collapsed,setCollapsed] = useState(false)
+
   const [{ user }, dispatch] = useReducer(authReducer,initialstate)
   const token = localStorage.getItem('key')
 
   const onCollapse = collapsed => {
-    console.log(collapsed);
+    // console.log(collapsed);
     setCollapsed(collapsed);
   };
 
@@ -40,7 +41,7 @@ const AppLayout = (props) => {
   useEffect(()=>{
     // will only run once when the app loads
   
-      console.log(token);
+      // console.log(token);
 
       if(token){
         // The user just logged in or was logged in
@@ -58,7 +59,7 @@ const AppLayout = (props) => {
       }
     
   },[])
-    console.log(user)
+    // console.log(user)
     
     return (
       <Layout style={{ minHeight: '100vh' }}>
@@ -105,7 +106,10 @@ const AppLayout = (props) => {
           <Breadcrumb style={{ margin: '16px 0' }}>
       
                   {/* {props.userauthentication? props.is_educator(the createassignment link)} */}
-                  <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>
+                  {/* {user.role ==='is_staff' &&  */}
+                    <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>
+                  
+                
                   <Link to='/assignmentlist'><Breadcrumb.Item >Assignments</Breadcrumb.Item></Link>
               </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
