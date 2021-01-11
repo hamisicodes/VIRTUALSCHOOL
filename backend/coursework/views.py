@@ -11,11 +11,13 @@ class CoursesView(ListAPIView):
     queryset = Course.objects.all()
     permission_classes = (permissions.AllowAny,)
 
-# class CourseView(RetrieveAPIView):
-#     serializer_class = CourseSerializer
-#     queryset = Course.objects.all()
-#     permission_classes = (permissions.AllowAny,)
-#     lookup_field = 'slug'
+    def get_serializer_context(self):
+        context = super(CoursesView,self).get_serializer_context()
+        context.update({
+            "request":self.request
+        })
+
+        return context
 
 class CourseView(APIView):
     def get_object(self, slug):
@@ -26,8 +28,11 @@ class CourseView(APIView):
 
     def get(self,request,slug,format=None):
         course = self.get_object(slug)
+        
         modules = course.module_set.all()
         serializer = ModuleSerializer(modules , many=True)
        
         return Response(serializer.data)
+
+
 
