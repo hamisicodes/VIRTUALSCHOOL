@@ -35,6 +35,7 @@ const AssignmentDetail = (props) =>{
     )
 
     // Taking advantage of useEffect to get assignment questions.
+    
     useEffect(()=>{
         setLoading(true)
         fetch(`http://127.0.0.1:8000/api/assignments/${ID}`, {

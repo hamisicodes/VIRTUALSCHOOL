@@ -44,7 +44,7 @@ class Course(models.Model):
     modified = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.title}"
+        return self.title
     
 # student model that is related to the profile
 class Student(models.Model):
@@ -54,6 +54,23 @@ class Student(models.Model):
     courses = models.ManyToManyField(Course,blank=True)
     def __str__(self):
        return f'{self.profile}' 
+
+class Module(models.Model):
+    title = models.CharField(max_length=100, blank=True)
+    course = models.ForeignKey(Course , on_delete=models.CASCADE)
+
+    def __str__(self):
+       return f'{self.title}' 
+
+class Page(models.Model):
+    page_number = models.IntegerField(blank = True , default=1)
+    header = models.CharField(max_length=100 , blank=True)
+    module = models.ForeignKey(Module , on_delete=models.CASCADE)
+    content = models.TextField(blank=True)
+
+
+    def __str__(self):
+       return f'{self.header}' 
 
 
 
