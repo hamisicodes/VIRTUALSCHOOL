@@ -67,6 +67,7 @@ class Page(models.Model):
     header = models.CharField(max_length=100 , blank=True)
     module = models.ForeignKey(Module , on_delete=models.CASCADE)
     content = models.TextField(blank=True)
+    slug = models.SlugField(blank=True , null=True)
 
 
     def __str__(self):
