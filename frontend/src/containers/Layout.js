@@ -116,17 +116,11 @@ if (courseData){
             
             
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              
-          
-            
-            
             <Menu.Item  key="4">
             <Link to='/login'>Logout</Link> 
             </Menu.Item>
 
             <Menu.Item key="3">Account</Menu.Item>
-            
-          
             </SubMenu>
             
             <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
@@ -143,7 +137,6 @@ if (courseData){
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-      
                   {/* {props.userauthentication? props.is_educator(the createassignment link)} */}
                   { userDetail.is_staff && userDetail.is_active?
                     <Link to='/createAssignment' style={{color: "green"}}><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>: null

@@ -20,18 +20,30 @@ const AssignmentDetail = (props) =>{
     const [answer, setAnswer] = useState({})
     const [redirect, setRedirect] = useState(null)
     const ID = props.match.params.id
-    // console.log(ID)
+    let userDetail = {}
+    let courseData = props.courseData
+    if (courseData){
+        let [{user}] = courseData
+        userDetail = user
+        
+    }
+   
 
 
     const getExtra =()=>(
-        <>
-            <Button secondary type="icon" onClick={handleUpdate}>
-               Update
-            </Button>
-            <Button danger type="icon" onClick={handleDelete}>
-                <DeleteFilled />
-            </Button>
-        </>
+         
+       
+            <>
+        <Button secondary type="icon" onClick={handleUpdate}>
+        Update
+     </Button>
+     <Button danger type="icon" onClick={handleDelete}>
+         <DeleteFilled />
+     </Button>
+      </>
+
+            
+       
     )
 
     // Taking advantage of useEffect to get assignment questions.
@@ -150,9 +162,9 @@ const AssignmentDetail = (props) =>{
                 <div>
                     <Skeleton active />
                 </div> :(
-                <Card title={assignment.title} extra={ getExtra()
+                <Card title={assignment.title} extra={userDetail.is_staff && userDetail.is_active ? getExtra(): null}
             //   <Button type="primary" >edit</Button>
-            }>
+            >
                     {/* <Card type="inner" title="Inner Card title" extra={<a href="#">More</a>}> */}
                         <Questions 
                             submit={handleSubmit}
