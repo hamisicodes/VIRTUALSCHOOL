@@ -79,6 +79,16 @@ class GradedAssignmentSerializer(serializers.ModelSerializer):
         model = Graded_Assignment
         fields = ("__all__")
         
+    def get_queryset(self):
+        user = self.request.user.id
+        pk = user.id
+        queryset = self.objects.all()
+        if pk is not None:
+            queryset = queryset.filter(id=pk)
+        return queryset
+        
+        
+        
     # overriding the create method
     def create(self, request):
         data =request.data

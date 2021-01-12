@@ -56,7 +56,6 @@ const GroupedAssignmentCreate = (props) => {
         
     }
     return (
-		
 		<Form name="dynamic_form_nest_item" scrollToFirstError={true}	style = {{
 			textAlign: "center"
 		}}onFinish={onFinish}  autoComplete="off" key ={formKey}>

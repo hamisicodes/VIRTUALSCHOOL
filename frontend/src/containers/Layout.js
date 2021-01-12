@@ -12,6 +12,7 @@ import {
   PercentageOutlined,
 } from '@ant-design/icons';
 import CourseList from './CourseList';
+import { getRenderPropValue } from 'antd/lib/_util/getRenderPropValue';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -59,8 +60,8 @@ if (courseData){
   
 
   // using react.clone_element to pass down some addition props to course_list component
-  const children = React.Children.map(props.children, CourseList =>{
-    return React.cloneElement(CourseList, {
+  const children = React.Children.map(props.children, child =>{
+    return React.cloneElement(child, {
       courseData: courseData
     })
   })
@@ -144,8 +145,8 @@ if (courseData){
           <Breadcrumb style={{ margin: '16px 0' }}>
       
                   {/* {props.userauthentication? props.is_educator(the createassignment link)} */}
-                  { userDetail.is_staff?
-                    <Link to='/createAssignment'><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>: null
+                  { userDetail.is_staff && userDetail.is_active?
+                    <Link to='/createAssignment' style={{color: "green"}}><Breadcrumb.Item>Create Assigment</Breadcrumb.Item></Link>: null
                     }
                   
                 
