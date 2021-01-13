@@ -2,11 +2,14 @@ import React,{ useState,useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { Button } from 'antd';
 
-function CourseList() {
-    const [data , setData] = useState(null)
+function CourseList(props) {
+    const data = props.courseData
+    // console.log(data)
+    // const [data , setData] = useState(null)
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState(null)
     let token = localStorage.getItem('key');
+
 
     useEffect(() =>{
         setLoading(true)
@@ -28,6 +31,7 @@ function CourseList() {
         })
         
     },[])
+
 
     return (
         <div>

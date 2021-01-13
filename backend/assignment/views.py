@@ -41,14 +41,22 @@ class GradedAssignmentListView(ListAPIView):
     # quering for specific user, to define defferent students.
     def get_queryset(self):
         queryset = Graded_Assignment.objects.all()
-        username = self.request.query_params.get('username', None)
-        if username is not None:
-            queryset = queryset.filter(student_username=username)
+        pk= self.request.user.id
+        if pk is not None:
+            queryset = queryset.filter(id=pk)
         return queryset
     
 class GradedAssignmentCreateView(CreateAPIView):
     serializer_class = GradedAssignmentSerializer
-    queryset = Graded_Assignment.objects.all()
+    
+    def get_queryset(self, request):
+        queryset = Graded_Assignment.objects.all()
+        pk = request.user.id
+        print('ia m')
+        print(pk)
+        if pk is not None:
+            queryset = queryset.filter(id=pk)
+        return queryset
     
     # overing post method
     def post(self, request):

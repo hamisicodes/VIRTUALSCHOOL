@@ -10,6 +10,16 @@
 
 {% endblock %}
 
+{% block content %}
+    { if request.user.is_superuser}
+    <div class="app-auth module"></div>
+    <div class="app-sites module"></div>
+    <div class="app-social account module"></div>
+
+
+    {% endif %}
+
+{% endblock %}
 
 {% block footer %}
 <div id="footer">
