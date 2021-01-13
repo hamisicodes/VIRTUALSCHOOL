@@ -17,6 +17,8 @@ import { initialstate , authReducer } from './reducers'
 import CourseList from './containers/CourseList'
 import CourseDetail from './containers/CourseDetail'
 
+import Page from './containers/Page'
+
 import 'antd/dist/antd.less';
 import 'antd/dist/antd.css';
 import './App.css';
@@ -80,6 +82,7 @@ function App() {
         <AppRoute path = '/gradedassignment'layout={AppLayout} component={GradedAssignment}/>
         <AppRoute exact path = '/courses/'layout={AppLayout} component={CourseList}/>
         <AppRoute path = '/courses/:courseSlug'layout={AppLayout} component={CourseDetail}/>
+        <AppRoute path = '/page/:pageSlug'layout={AppLayout} component={Page}/>
         <Route  path="/login" component={Login} />
         <Route  path="/signup" component={SignUp} />
     </div>

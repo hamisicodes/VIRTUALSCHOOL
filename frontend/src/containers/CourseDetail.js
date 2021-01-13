@@ -19,6 +19,16 @@ function CourseDetail() {
     const [data, setData] = useState(null);
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
+
+    const selection = function(selectedKeys, e){
+      console.log(e)
+      
+      let pg =  e.node
+      if (pg.pages){
+        pg = pg.pages[0]
+      }
+      window.location.assign(`/page/${pg.slug}`);
+    }
   
     let token = localStorage.getItem('key');
     let newTreedata = []
@@ -38,7 +48,7 @@ function CourseDetail() {
             console.log(courseSlug)
             
             setData(apiData);
-            console.log(data);
+            
             
             setLoading(false)
         })
@@ -59,7 +69,10 @@ function CourseDetail() {
         for(let j = 0 ; j< obj.children.length; j++){
             obj.children[j].key = `${i}-${j}`;
             obj.children[j].title = data[i].pages[j].header ;
+            obj.children[j].slug = data[i].pages[j].slug
             obj.children[j].icon =  <MehOutlined /> ;
+            
+
 
         }
 
@@ -69,6 +82,7 @@ function CourseDetail() {
    
     }
     
+    console.log(newTreedata);
     
 
 
@@ -78,9 +92,10 @@ function CourseDetail() {
       <Tree
       showIcon
       defaultExpandAll
-      defaultSelectedKeys={['0-0-0']}
+      defaultSelectedKeys={['0']}
       switcherIcon={<DownOutlined />}
       treeData={newTreedata}
+      onSelect={selection}
     />
   
     );
