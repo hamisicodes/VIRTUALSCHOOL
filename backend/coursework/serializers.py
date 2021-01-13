@@ -18,7 +18,6 @@ class CoursesSerializer(serializers.ModelSerializer):
         request = self.context['request']
        
         if request.user:
-           
             serializer = UserSerializer(request.user)
             return serializer.data
         
@@ -31,14 +30,13 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
         lookup_field = 'slug'
 
-class PageSerializer(serializers.ModelSerializer):
+class PagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
         fields = '__all__'
 
 class ModuleSerializer(serializers.ModelSerializer):
     pages = serializers.SerializerMethodField()
-    # user = serializers.SerializerMethodField()
     class Meta:
         model = Module
         fields = '__all__'
@@ -46,18 +44,16 @@ class ModuleSerializer(serializers.ModelSerializer):
     def get_pages(self,obj):
         modulePages = obj.page_set.all()
 
-        serializer = PageSerializer(modulePages , many=True)
+        serializer = PagesSerializer(modulePages , many=True)
 
         user = CurrentUserDefault
         print(user)
        
         return serializer.data
 
-    # def get_user(self,obj):
-    #     request = self.context['request']
-    #     print(request.user)
-
-    #     return request.user
-
-
+class PageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page
+        fields = ('header','content','slug')
+        lookup_field = 'slug'
 

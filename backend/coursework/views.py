@@ -2,8 +2,8 @@ from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView,RetrieveAPIView
-from .models import Course,Module
-from .serializers import CoursesSerializer,CourseSerializer,ModuleSerializer
+from .models import Course,Module,Page
+from .serializers import CoursesSerializer,CourseSerializer,ModuleSerializer,PageSerializer
 
 
 class CoursesView(ListAPIView):
@@ -33,6 +33,12 @@ class CourseView(APIView):
         serializer = ModuleSerializer(modules , many=True)
        
         return Response(serializer.data)
+
+class PageView(RetrieveAPIView):
+        permission_classes = (permissions.AllowAny,)
+        serializer_class = PageSerializer
+        queryset = Page.objects.all() 
+        lookup_field = 'slug'
 
 
 
