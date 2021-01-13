@@ -13,10 +13,8 @@ urlpatterns = [
     path('api/assignments/', include('assignment.assignments.urls')),
     path('api/graded_assignments/', include('assignment.graded_assignments.urls')),
     path('api/coursework/',include('coursework.urls')),
-    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+   
     
-]
+] +  static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL , document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)
+urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

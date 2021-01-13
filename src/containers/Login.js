@@ -67,7 +67,7 @@ const Login = () => {
         console.log(res);
         let token = res.data.key;
         localStorage.setItem('key',token)
-        history.push('/')
+        history.push('/courses')
       })
   }
   return (
