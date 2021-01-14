@@ -72,7 +72,7 @@ function App() {
     <Router>
     <div className="App">
 
-        <AppRoute  exact path="/" layout={AppLayout} component={DemoList} />
+        <Route exact path="/" component={DemoList} />
       
         
         <AppRoute path= '/assignment/:id' layout={AppLayout} component={AssignmentDetail}/>
